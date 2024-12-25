@@ -21,6 +21,7 @@ function Login() {
 
             const data = await response.json();
             if (response.ok) {
+                localStorage.setItem("token", data.user.userID);
                 navigate("/HomePage");
             } else {
                 alert(data.message || "User not found. Please register.");
