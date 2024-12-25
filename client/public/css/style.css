@@ -14,6 +14,8 @@ body {
     height: 100%;
 }
 
+
+
 .container {
     margin: 15% auto;
     padding: 80px 0;
@@ -89,7 +91,7 @@ form button:active {
     background-color: #ffffff;
     border-bottom: 2px solid #ccc;
     border-radius: 10px 10px 0 0;
-    height: 80px;
+    height: 100px;
     position: fixed;
     top: 0;
     left: 0;
@@ -106,7 +108,7 @@ form button:active {
     background: none;
     color: black;
     border: none;
-    font-size: 30px;
+    font-size: 40px;
     cursor: pointer;
 }
 
@@ -203,4 +205,19 @@ form button:active {
 .hamburger-menu a:hover {
     color: #d6d5d5;
     text-decoration-line: none;
+}
+
+.logo {
+    background-image: url("../image/logo.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.header-container header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
