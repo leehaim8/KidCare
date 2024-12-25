@@ -1,10 +1,9 @@
 const User = require("../models/userModel");
 
 const usersController = {
-
     // Register new user
     async register(req, res) {
-        const { userID, name, username, password, childrenIDs } = req.body;
+        const { name, username, password, childrenIDs } = req.body;
 
         try {
             const existingUser = await User.findOne({ username });
@@ -12,14 +11,23 @@ const usersController = {
                 return res.status(400).json({ message: "Username already exists" });
             }
 
-            const newUser = new User({ userID, name, username, password, childrenIDs });
+            const lastUser = await User.findOne().sort({ userID: -1 });
+            const lastID = lastUser ? lastUser.userID : 0;
+
+            const newUser = new User({
+                userID: lastID + 1,
+                name,
+                username,
+                password,
+                childrenIDs,
+            });
+
             await newUser.save();
             res.status(201).json({ message: "User registered successfully", user: newUser });
         } catch (error) {
             res.status(500).json({ message: "Server error", error });
         }
     },
-
     // Login user
     async login(req, res) {
         const { username, password } = req.body;
@@ -39,7 +47,6 @@ const usersController = {
             res.status(500).json({ message: "Server error", error: error });
         }
     },
-
     // Get all users
     async getUsers(req, res) {
         try {
@@ -49,7 +56,6 @@ const usersController = {
             res.status(500).json({ message: "Server error", error });
         }
     }
-
 };
 
 module.exports = { usersController };
