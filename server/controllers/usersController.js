@@ -3,7 +3,7 @@ const User = require("../models/userModel");
 const usersController = {
     // Register new user
     async register(req, res) {
-        const { name, username, password, childrenIDs } = req.body;
+        const { name, username, password } = req.body;
 
         try {
             const existingUser = await User.findOne({ username });
@@ -19,7 +19,6 @@ const usersController = {
                 name,
                 username,
                 password,
-                childrenIDs,
             });
 
             await newUser.save();
