@@ -13,6 +13,37 @@ const childrenController = {
         } catch (error) {
             res.status(500).json({ message: error.message });
         }
+    },
+    async addChild(req, res) {
+        const { userID } = req.params;
+        const { name, age, allergies, motherName, fatherName, phone } = req.body;
+        const contactInfo = { mother: motherName, father: fatherName, phone: phone };
+        const image = 'girl.jpeg';
+
+        if (!(name, age, allergies, motherName, fatherName, phone)) {
+            return res.status(400).json({ message: "One of the filed are missing!" });
+        }
+
+        try {
+            const lastUser = await Children.findOne().sort({ childID: -1 });
+            const lastID = lastUser ? lastUser.childID : 0;
+
+            const newChild = new Children({
+                userID: userID,
+                name,
+                age,
+                allergies,
+                contactInfo,
+                childID: lastID + 1,
+                image: image
+            });
+
+            await newChild.save();
+            res.status(201).json({ message: "Child added successfully", child: newChild });
+
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
     }
 };
 

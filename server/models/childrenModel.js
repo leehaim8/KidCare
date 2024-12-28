@@ -2,13 +2,17 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const childrenSchema = new Schema({
-    userID: { type: String, required: true },
-    name: { type: String, required: true },
-    age: { type: Number, required: true },
-    allergies: { type: Array, required: true },
-    contactInfo: { type: Object, required: true },
-    childID: { type: String, required: true },
-    image: { type: String, required: true }
+    userID: String,
+    name: String,
+    age: Number,
+    allergies: [String],
+    contactInfo: {
+        mother: String,
+        father: String,
+        phone: String
+    },
+    childID: Number,
+    image: String
 }, { collection: "children" });
 
 const Children = mongoose.model("Children", childrenSchema);

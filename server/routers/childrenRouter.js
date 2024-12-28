@@ -1,9 +1,9 @@
-const {Router} = require('express');
-const {childrenController} = require('../controllers/childrenController');
+const { Router } = require('express');
+const { childrenController } = require('../controllers/childrenController');
 
 const childrenRouter = new Router();
 
 childrenRouter.get('/:userID', childrenController.getChildren);
-//childrenRouter.post('/addChild', childrenController.addChild);
+childrenRouter.post('/:userID/addChild', childrenController.addChild);
 
-module.exports = {childrenRouter};
+module.exports = { childrenRouter };

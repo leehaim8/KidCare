@@ -43,15 +43,17 @@ function Register() {
     };
 
     return (
-        <form className="form" onSubmit={handleRegister}>
-            <div className="login-register">
-                <h1>Register</h1>
-                <Input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange}/>
-                <Input type="text" name="username" placeholder="Username" value={formData.username} onChange={handleChange}/>
-                <Input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange}/>
-                <button type="submit">Register</button>
-            </div>
-        </form>
+        <div className="login-register">
+            <form className="form" onSubmit={handleRegister}>
+                <div>
+                    <h1>Register</h1>
+                    <Input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} />
+                    <Input type="text" name="username" placeholder="Username" value={formData.username} onChange={handleChange} />
+                    <Input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} />
+                    <button type="submit">Register</button>
+                </div>
+            </form>
+        </div>
     );
 }
 

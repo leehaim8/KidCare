@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 function Home() {
   const [children, setChildren] = useState([]);
   const userId = localStorage.getItem("token");
-  console.log(userId);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,7 +23,7 @@ function Home() {
   }, [userId]);
 
   const handleAddChild = () => {
-    navigate("/add-child");
+    navigate("/addChild");
   };
 
   return (
