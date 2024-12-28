@@ -301,7 +301,7 @@ form button:active {
 }
 
 .add-child-container {
-    margin-top: 120px;
+    margin-top: 10px;
     margin-left: 20px;
     padding: 10px;
 }
@@ -374,4 +374,29 @@ form button:active {
 .add-child-form button:active {
     background-color: #a4a3a3;
     color: black;
+}
+
+.breadcrumbs-container {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    margin-top: 120px;
+    margin-left: 30px;
+}
+
+.breadcrumb-item {
+    text-decoration: none;
+    color: white;
+}
+
+.breadcrumb-item:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb-separator {
+    margin: 0 5px;
+}
+
+.breadcrumb-item.active {
+    color: gray;
 }
