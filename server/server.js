@@ -6,6 +6,7 @@ const PORT = 8080;
 
 const { usersRouter } = require('./routers/usersRouter');
 const { childrenRouter } = require('./routers/childrenRouter');
+const { weekFeedBackRouter } = require('./routers/weekFeedBackRouter');
 
 app.use(cors({
     origin: 'http://localhost:3000',
@@ -20,6 +21,7 @@ app.use("/public", express.static(path.join(__dirname, 'public')));
 
 app.use('/api/users', usersRouter);
 app.use('/api/children', childrenRouter);
+app.use('/api/weekFeedBack', weekFeedBackRouter);
 
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
