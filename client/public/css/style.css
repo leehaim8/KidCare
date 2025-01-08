@@ -58,43 +58,20 @@ form {
 }
 
 form input {
-    border: 2px solid gray;
-    background-color: white;
+    padding: 10px;
+    font-size: 14px;
     width: 100%;
-    /* שיפור גמישות */
-    max-width: 250px;
-    border-radius: 3px;
-    padding: 10px 15px;
-    margin: 0 auto 10px auto;
-    font-family: 'Assistant', sans-serif;
-    font-size: 18px;
-    color: black;
-    text-align: center;
+    border: 2px solid var(--form-color);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    margin: 10px auto;
 }
 
 form input:focus {
     border-color: #a4a3a3;
     outline: none;
 }
-
-/* form button {
-    appearance: none;
-    outline: 0;
-    background-color: #d6d5d5;
-    border: 0;
-    padding: 10px 15px;
-    color: black;
-    border-radius: 3px;
-    width: 250px;
-    font-size: 18px;
-    margin-top: 20px;
-}
-
-form button:hover,
-form button:active {
-    background-color: #a4a3a3;
-    color: black;
-} */
 
 form button {
     appearance: none;
