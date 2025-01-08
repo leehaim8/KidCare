@@ -4,6 +4,8 @@ import Header from "./Header";
 import Input from "./Input";
 import Breadcrumbs from "./Breadcrumbs";
 
+const allergiesList = ["Peanuts", "Milk", "Fish", "Eggs", "Soy"];
+
 function AddChild() {
     const [formData, setFormData] = useState({
         name: "",
@@ -11,7 +13,8 @@ function AddChild() {
         allergies: [],
         motherName: "",
         fatherName: "",
-        phone: ""
+        phone: "",
+        gender: ""
     });
 
     const navigate = useNavigate();
@@ -43,6 +46,12 @@ function AddChild() {
 
     const handleRegister = async (e) => {
         e.preventDefault();
+
+        if (!formData.name || !formData.age || !formData.phone || formData.gender || formData.motherName || formData.fatherName) {
+            alert("Please fill in all required fields.");
+            return;
+        }
+
         const userID = localStorage.getItem("token");
         try {
             const response = await fetch(`http://localhost:8080/api/children/${userID}/addChild`, {
@@ -66,7 +75,7 @@ function AddChild() {
     };
 
     return (
-        <div>
+        <div className="add-child-page">
             <Header />
             <Breadcrumbs />
             <div className="add-child-container">
@@ -90,27 +99,30 @@ function AddChild() {
                     </div>
                     <div className="add-child-div">
                         <label>Phone Number:</label>
-                        <Input type="number" name="phone" placeholder="Phone" value={formData.phone} onChange={handleChange} />
+                        <Input type="tel" name="phone" placeholder="Phone" value={formData.phone} onChange={handleChange} />
                     </div>
-                    <div className="child-allergies">
+                    <div className="add-child-div">
+                        <label>Child Gender:</label>
+                        <select name="gender" value={formData.gender} onChange={handleChange}>
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    <div className="add-child-div child-allergies">
                         <label>Child Allergies:</label>
-                        <div>
-                            <label className="child-allergies-label">
-                                <input type="checkbox" name="allergies" value="Peanuts" checked={formData.allergies.includes("Peanuts")} onChange={handleChange} />Peanuts
+                        {allergiesList.map((allergy) => (
+                            <label className="child-allergies-label" key={allergy}>
+                                <input
+                                    type="checkbox"
+                                    name="allergies"
+                                    value={allergy}
+                                    checked={formData.allergies.includes(allergy)}
+                                    onChange={handleChange}
+                                />
+                                {allergy}
                             </label>
-                            <label className="child-allergies-label">
-                                <input type="checkbox" name="allergies" value="Milk" checked={formData.allergies.includes("Milk")} onChange={handleChange} /> Milk
-                            </label>
-                            <label className="child-allergies-label">
-                                <input type="checkbox" name="allergies" value="Fish" checked={formData.allergies.includes("Fish")} onChange={handleChange} />Fish
-                            </label>
-                            <label className="child-allergies-label">
-                                <input type="checkbox" name="allergies" value="Eggs" checked={formData.allergies.includes("Eggs")} onChange={handleChange} />Eggs
-                            </label>
-                            <label className="child-allergies-label">
-                                <input type="checkbox" name="allergies" value="Soy" checked={formData.allergies.includes("Soy")} onChange={handleChange} />Soy
-                            </label>
-                        </div>
+                        ))}
                     </div>
                     <button type="submit">Submit</button>
                 </form>

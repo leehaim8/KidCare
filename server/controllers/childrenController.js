@@ -16,12 +16,16 @@ const childrenController = {
     },
     async addChild(req, res) {
         const { userID } = req.params;
-        const { name, age, allergies, motherName, fatherName, phone } = req.body;
+        const { name, age, allergies, motherName, fatherName, phone, gender } = req.body;
         const contactInfo = { mother: motherName, father: fatherName, phone: phone };
-        const image = 'girl.jpeg';
 
         if (!(name, age, allergies, motherName, fatherName, phone)) {
             return res.status(400).json({ message: "One of the filed are missing!" });
+        }
+
+        let imageValue = 'boy.png';
+        if (gender === "Female") {
+            imageValue = 'girl.png';
         }
 
         try {
@@ -35,7 +39,7 @@ const childrenController = {
                 allergies,
                 contactInfo,
                 childID: lastID + 1,
-                image: image
+                image: imageValue
             });
 
             await newChild.save();
