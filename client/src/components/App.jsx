@@ -6,6 +6,7 @@ import Register from './Register';
 import ProtectedRoute from './ProtectedRoute';
 import AddChild from './addChild';
 import WeeklyFeedback from './WeeklyFeedback';
+import ChildInfo from './childInfo';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/HomePage" element={<ProtectedRoute element={<HomePage />} />} />
         <Route path="/addChild" element={<ProtectedRoute element={<AddChild />} />} />
         <Route path="/WeeklyFeedback" element={<ProtectedRoute element={<WeeklyFeedback />} />} />
+        <Route path="/childInfo/:id" element={<ProtectedRoute element={<ChildInfo />} />} />
       </Routes>
     </Router>
   );

@@ -31,7 +31,7 @@ function Home() {
       <Header />
       <div className="children-cards">
         {children.map((child) => (
-          <ChildCard key={child._id} child={child} />
+          <ChildCard key={child.childID} child={child} />
         ))}
         <div className="child-card add-child" onClick={handleAddChild}>
           <div className="add-child-icon">+</div>
