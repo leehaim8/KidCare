@@ -332,12 +332,12 @@ form button:hover {
     border-color: #bbb;
 }
 
-.add-child-page{
+.add-child-page {
     margin-bottom: 20px;
 }
 
 .add-child-container {
-    margin: 0 auto;
+    margin: 0 auto 100px auto;
     padding: 20px;
     max-width: 600px;
     background-color: #f5e6ff;
@@ -485,7 +485,7 @@ form.add-child-week-form input {
     font-weight: 300;
     padding: 10px;
     font-size: 14px;
-    width: 600px;
+    width: 250px;
     border: 2px solid var(--form-color);
     border-radius: 10px;
     transition: all 0.3s ease;
@@ -575,4 +575,93 @@ input[type="range"]::-moz-range-thumb {
     border: none;
     border-radius: 50%;
     cursor: pointer;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--header-color);
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.footer-link {
+    text-decoration: none;
+    color: #FFD740;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 24px;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #FFFFFF;
+}
+
+.footer-icon {
+    font-size: 30px;
+}
+
+.child-info-container {
+    margin-top: 120px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.child-info-card {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: var(--form-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.child-info-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.child-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.child-info-details {
+    margin-top: 20px;
+}
+
+.child-info-details p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.charts-container {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.chart {
+    width: 48%;
+}
+
+.chart h3 {
+    color: #000;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 10px;
 }

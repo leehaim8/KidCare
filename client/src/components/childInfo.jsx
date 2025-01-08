@@ -1,12 +1,107 @@
-import React from "react";
-import Header from "./Header";
-import Breadcrumbs from "./Breadcrumbs";
+import React, { useEffect, useState } from 'react';
+import { Line } from 'react-chartjs-2';
+import { useLocation } from 'react-router-dom';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import Header from './Header'
 
-function childInfo() {
-    return <div>
-        <Header/>
-        <Breadcrumbs/> 
-    </div>;
-}
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend
+);
 
-export default childInfo;
+const ChildInfo = () => {
+    const location = useLocation();
+    const pathSegments = location.pathname.split('/');
+    const childID = pathSegments[pathSegments.length - 1];
+
+    const [childDetails, setChildDetails] = useState(null);
+    const [weekFeedback, setWeekFeedback] = useState([]);
+
+    useEffect(() => {
+        const fetchChildDetails = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/api/children/childDetails/${childID}`);
+                if (!response.ok) {
+                    throw new Error('Error fetching child details');
+                }
+                const data = await response.json();
+                setChildDetails(data.childDetails);
+                setWeekFeedback(data.weekFeedback);
+            } catch (error) {
+                console.error('Error fetching child details:', error);
+            }
+        };
+
+        fetchChildDetails();
+    }, [childID]);
+
+    if (!childDetails) {
+        return <div>Loading...</div>;
+    }
+
+    const learningProgressData = {
+        labels: weekFeedback.map((feedback) => `Week ${feedback._id}`),
+        datasets: [
+            {
+                label: 'Learning Progress',
+                data: weekFeedback.map((feedback) => feedback.learningProgress),
+                fill: false,
+                borderColor: 'rgba(75,192,192,1)',
+                tension: 0.1,
+            },
+        ],
+    };
+
+    const healthData = {
+        labels: weekFeedback.map((feedback) => `Week ${feedback._id}`),
+        datasets: [
+            {
+                label: 'Health Rating',
+                data: weekFeedback.map((feedback) => feedback.health),
+                fill: false,
+                borderColor: 'rgba(255,99,132,1)',
+                tension: 0.1,
+            },
+        ],
+    };
+
+    return (
+        <div>
+            <Header />
+            <div className="child-info-container">
+                <div className="child-info-card">
+                    <div className="child-info-header">
+                        <h2>{childDetails.name}</h2>
+                        <img src={`http://localhost:8080/public/${childDetails.image}`} alt={`${childDetails.name}`} className="child-image" />
+                    </div>
+
+                    <div className="child-info-details">
+                        <p><strong>Age:</strong> {childDetails.age}</p>
+                        <p><strong>Allergies:</strong> {childDetails.allergies.join(', ')}</p>
+                        <p><strong>Mother's Contact:</strong> {childDetails.contactInfo.mother}</p>
+                        <p><strong>Father's Contact:</strong> {childDetails.contactInfo.father}</p>
+                        <p><strong>Phone:</strong> {childDetails.contactInfo.phone}</p>
+                    </div>
+                </div>
+
+                <div className="charts-container">
+                    <div className="chart">
+                        <h3>Learning Progress</h3>
+                        <Line data={learningProgressData} />
+                    </div>
+                    <div className="chart">
+                        <h3>Health Rating</h3>
+                        <Line data={healthData} />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default ChildInfo;

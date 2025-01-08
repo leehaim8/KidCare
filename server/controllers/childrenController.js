@@ -1,4 +1,5 @@
 const Children = require("../models/childrenModel");
+const weekFeedBackModel = require("../models/weekFeedBackModel");
 
 const childrenController = {
     async getChildren(req, res) {
@@ -45,6 +46,27 @@ const childrenController = {
             await newChild.save();
             res.status(201).json({ message: "Child added successfully", child: newChild });
 
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
+    },
+    async getChildDetails(req, res) {
+        const { childID } = req.params;
+        console.log(childID);
+        if (!childID) {
+            return res.status(400).json({ message: "User ID is required" });
+        }
+
+        try {
+            const childDetails = await Children.findOne({ childID });
+            const weekFeedback = await weekFeedBackModel.find({ name: childDetails.name });
+
+            if (!childDetails) {
+                return res.status(404).json({ message: 'Child not found' });
+            }
+            console.log(childDetails);
+            console.log(weekFeedback);
+            res.json({ childDetails, weekFeedback });
         } catch (error) {
             res.status(500).json({ message: error.message });
         }
