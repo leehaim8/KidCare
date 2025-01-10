@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const weekFeedBackSchema = new Schema({
-    ChildID: String,
+    ChildID: Number,
     name: String,
     mood: String,
     activities: [String],

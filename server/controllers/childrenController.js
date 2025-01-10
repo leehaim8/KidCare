@@ -1,4 +1,5 @@
 const Children = require("../models/childrenModel");
+const weekFeedBackModel = require("../models/weekFeedBackModel");
 
 const childrenController = {
     async getChildren(req, res) {
@@ -16,12 +17,16 @@ const childrenController = {
     },
     async addChild(req, res) {
         const { userID } = req.params;
-        const { name, age, allergies, motherName, fatherName, phone } = req.body;
+        const { name, age, allergies, motherName, fatherName, phone, gender } = req.body;
         const contactInfo = { mother: motherName, father: fatherName, phone: phone };
-        const image = 'girl.jpeg';
 
         if (!(name, age, allergies, motherName, fatherName, phone)) {
             return res.status(400).json({ message: "One of the filed are missing!" });
+        }
+
+        let imageValue = 'boy.png';
+        if (gender === "Female") {
+            imageValue = 'girl.png';
         }
 
         try {
@@ -35,12 +40,33 @@ const childrenController = {
                 allergies,
                 contactInfo,
                 childID: lastID + 1,
-                image: image
+                image: imageValue
             });
 
             await newChild.save();
             res.status(201).json({ message: "Child added successfully", child: newChild });
 
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
+    },
+    async getChildDetails(req, res) {
+        const { childID } = req.params;
+        console.log(childID);
+        if (!childID) {
+            return res.status(400).json({ message: "User ID is required" });
+        }
+
+        try {
+            const childDetails = await Children.findOne({ childID });
+            const weekFeedback = await weekFeedBackModel.find({ name: childDetails.name });
+
+            if (!childDetails) {
+                return res.status(404).json({ message: 'Child not found' });
+            }
+            console.log(childDetails);
+            console.log(weekFeedback);
+            res.json({ childDetails, weekFeedback });
         } catch (error) {
             res.status(500).json({ message: error.message });
         }
