@@ -67,6 +67,14 @@ function WeeklyFeedback() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const userID = localStorage.getItem("token");
+        if (formData.childID === ""|| formData.name === "") {
+            document.getElementById("selectError").style.display = "block";
+            return;
+        }
+        if (!formData.mood || !formData.activities || !formData.socialInteraction) {
+            document.getElementById("inputError").style.display = "block";
+            return;
+        }
         try {
             const response = await fetch(`http://localhost:8080/api/weekFeedBack/${userID}/addFeedback`, {
                 method: "POST",
@@ -109,9 +117,10 @@ function WeeklyFeedback() {
                     <div className="add-child-week-form-div">
                         <label>Choose a child:</label>
                         <select name="child" value={JSON.stringify({ name: formData.name, id: formData.childID })} onChange={handleChange}>
-                            <option value="">Select a child</option>
+                            <option value={JSON.stringify({name:"",id:""})}>Select a child</option>
                             {renderChildrenOptions()}
                         </select>
+                        <span className="errorForm" id="selectError">*please select a child</span>
                     </div>
 
                     <div className="add-child-week-form-div">
@@ -135,16 +144,22 @@ function WeeklyFeedback() {
                         />
                     </div>
                     <div className="add-child-week-form-div">
-                        <label>Physical Health: {formData.health}/10</label>
-                        <input
-                            type="range"
-                            name="health"
-                            min="0"
-                            max="10"
-                            value={formData.health}
-                            onChange={handleChange}
-                        />
-                    </div>
+                    <label>Physical Health:</label>
+    <div className="range-container">
+        <span className="range-min">Bad</span>
+        <span className="range-value">{formData.health}</span>
+        <span className="range-max">Good</span>
+    <input
+        type="range"
+        name="health"
+        min="0"
+        max="10"
+        value={formData.health}
+        onChange={handleChange}
+        className="range-slider"
+    />
+    </div>
+</div>
                     <div className="add-child-week-form-div">
                         <label>Social Interaction:</label>
                         <Input
@@ -156,16 +171,22 @@ function WeeklyFeedback() {
                         />
                     </div>
                     <div className="add-child-week-form-div">
-                        <label>Learning Progress: {formData.learningProgress}/10</label>
-                        <input
-                            type="range"
-                            name="learningProgress"
-                            min="0"
-                            max="10"
-                            value={formData.learningProgress}
-                            onChange={handleChange}
-                        />
-                    </div>
+    <label>Learning Progress:</label>
+    <div className="range-container">
+        <span className="range-min">0</span>
+        <span className="range-value">{formData.learningProgress}</span>
+        <span className="range-max">10</span>
+    <input
+        type="range"
+        name="learningProgress"
+        min="0"
+        max="10"
+        value={formData.learningProgress}
+        onChange={handleChange}
+        className="range-slider"
+    />
+    </div>
+</div>
                     <div className="add-child-week-form-div">
                         <label>Notes:</label>
                         <input
@@ -177,6 +198,7 @@ function WeeklyFeedback() {
                             onChange={handleChange}
                         />
                     </div>
+                    <span className="errorForm" id="inputError">*Please fill out the entire form </span>
                     <button type="submit">Submit Feedback</button>
                 </form>
             </div>
