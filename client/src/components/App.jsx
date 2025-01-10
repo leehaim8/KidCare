@@ -34,6 +34,7 @@ import Register from './Register';
 import ProtectedRoute from './ProtectedRoute';
 import AddChild from './addChild';
 import WeeklyFeedback from './WeeklyFeedback';
+import PeriodicFeedback from './PeriodicFeedback';
 import ChildInfo from './childInfo';
 import Footer from './Footer';
 
@@ -54,6 +55,7 @@ const AppContent = () => {
         <Route path="/addChild" element={<ProtectedRoute element={<AddChild />} />} />
         <Route path="/WeeklyFeedback" element={<ProtectedRoute element={<WeeklyFeedback />} />} />
         <Route path="/childInfo/:id" element={<ProtectedRoute element={<ChildInfo />} />} />
+        <Route path="/PeriodicFeedback" element={<ProtectedRoute element={<PeriodicFeedback />} />} />
       </Routes>
       {shouldShowFooter() && <Footer />}
     </div>

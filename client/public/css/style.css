@@ -665,3 +665,48 @@ input[type="range"]::-moz-range-thumb {
     font-size: 18px;
     margin-bottom: 10px;
 }
+.range-container {
+    position: relative;
+    width: 100%-10%; /* Matches the width of the range slider */
+}
+
+.range-min,
+.range-max,
+.range-value {
+    position: absolute;
+    top: -20px; /* Position above the slider */
+    font-size: 14px; /* Text size for labels */
+    color: black; /* Text color */
+}
+
+.range-min {
+    left: 0; /* Align to the left edge */
+}
+
+.range-max {
+    right: 0; /* Align to the right edge */
+}
+
+.range-value {
+    left: 50%; /* Center align */
+    transform: translateX(-50%); /* Adjust for perfect centering */
+    font-weight: bold;
+}
+
+.errorForm {
+    color: red;
+    font-size: 16px;
+    margin-top: 5px;
+    display: none;
+}
+
+.step-box {
+    padding-bottom: 16px; /* Padding for each step field */
+}
+
+.action-buttons {
+    margin-top: 20px; /* Margin above the buttons */
+    display: flex;
+    justify-content: space-between;
+}
+
