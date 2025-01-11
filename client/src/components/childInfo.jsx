@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { useLocation } from 'react-router-dom';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
-import Header from './Header'
+import Header from './Header';
+import WeeklyFeedbackChildPage from './WeeklyFeedbackChildPage'
 
 ChartJS.register(
     CategoryScale,
@@ -44,8 +45,13 @@ const ChildInfo = () => {
         return <div>Loading...</div>;
     }
 
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('he-IL', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    };
+
     const learningProgressData = {
-        labels: weekFeedback.map((feedback) => `Week ${feedback._id}`),
+        labels: weekFeedback.map((feedback) => formatDate(feedback.Date)),
         datasets: [
             {
                 label: 'Learning Progress',
@@ -58,7 +64,7 @@ const ChildInfo = () => {
     };
 
     const healthData = {
-        labels: weekFeedback.map((feedback) => `Week ${feedback._id}`),
+        labels: weekFeedback.map((feedback) => formatDate(feedback.Date)),
         datasets: [
             {
                 label: 'Health Rating',
@@ -79,7 +85,6 @@ const ChildInfo = () => {
                         <h2>{childDetails.name}</h2>
                         <img src={`http://localhost:8080/public/${childDetails.image}`} alt={`${childDetails.name}`} className="child-image" />
                     </div>
-
                     <div className="child-info-details">
                         <p><strong>Age:</strong> {childDetails.age}</p>
                         <p><strong>Allergies:</strong> {childDetails.allergies.join(', ')}</p>
@@ -88,15 +93,19 @@ const ChildInfo = () => {
                         <p><strong>Phone:</strong> {childDetails.contactInfo.phone}</p>
                     </div>
                 </div>
-
+                <WeeklyFeedbackChildPage weekFeedback={weekFeedback} />
                 <div className="charts-container">
                     <div className="chart">
                         <h3>Learning Progress</h3>
                         <Line data={learningProgressData} />
+                        <div className="chart-date">
+                        </div>
                     </div>
                     <div className="chart">
                         <h3>Health Rating</h3>
                         <Line data={healthData} />
+                        <div className="chart-date">
+                        </div>
                     </div>
                 </div>
             </div>

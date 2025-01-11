@@ -52,7 +52,6 @@ const childrenController = {
     },
     async getChildDetails(req, res) {
         const { childID } = req.params;
-        console.log(childID);
         if (!childID) {
             return res.status(400).json({ message: "User ID is required" });
         }
@@ -64,8 +63,7 @@ const childrenController = {
             if (!childDetails) {
                 return res.status(404).json({ message: 'Child not found' });
             }
-            console.log(childDetails);
-            console.log(weekFeedback);
+
             res.json({ childDetails, weekFeedback });
         } catch (error) {
             res.status(500).json({ message: error.message });

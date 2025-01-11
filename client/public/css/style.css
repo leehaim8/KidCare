@@ -4,6 +4,7 @@
     --background-color: #f3eafc;
     --header-color: #dcbff6;
     --form-color: #9b4dca;
+    --card--color: #cc98e6;
 }
 
 * {
@@ -620,7 +621,7 @@ input[type="range"]::-moz-range-thumb {
     width: 100%;
     max-width: 600px;
     padding: 20px;
-    background-color: var(--form-color);
+    background-color: var(--card--color);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
@@ -653,6 +654,7 @@ input[type="range"]::-moz-range-thumb {
     display: flex;
     justify-content: space-between;
     margin-top: 40px;
+    margin-bottom: 100px;
 }
 
 .chart {
@@ -665,3 +667,103 @@ input[type="range"]::-moz-range-thumb {
     font-size: 18px;
     margin-bottom: 10px;
 }
+
+.weekly-feedback-container {
+    width: 600px;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: var(--card--color);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.feedback-card {
+    background-color: var(--header-color);
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 3px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.weekly-feedback-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.weekly-feedback-header {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.send-message-btn, .fill-feedback-btn {
+    background-color: var(--form-color);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10PX;
+    margin-top: 5px;
+}
+
+.send-message-btn:hover, .fill-feedback-btn:hover {
+    background-color: #45a049;
+}
+
+.card-header h4 {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.mood-icon {
+    font-size: 24px;
+}
+
+.card-body {
+    display: none;
+    padding-top: 10px;
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--form-color);
+}
+
+.card-body {
+    font-size: 16px;
+}
+
+.feedback-card.expanded .card-body {
+    display: block;
+}
+
+.feedback-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.feedback-card .mood-icon span {
+    font-size: 32px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.feedback-card .mood-icon span:hover {
+    transform: scale(1.2);
+}
+

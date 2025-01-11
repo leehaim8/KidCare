@@ -9,7 +9,8 @@ const weekFeedBackSchema = new Schema({
     health: Number,
     socialInteraction: String,
     learningProgress: Number,
-    notes: String
+    notes: String,
+    Date: Date
 }, { collection: "weekFeedBack" });
 
 const weekFeedBack = mongoose.model("weekFeedBack", weekFeedBackSchema);
