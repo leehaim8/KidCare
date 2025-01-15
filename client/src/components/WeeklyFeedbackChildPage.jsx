@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { FaSmile, FaSadTear } from 'react-icons/fa';
 
 const WeeklyFeedback = ({ weekFeedback }) => {
     const [expandedIndex, setExpandedIndex] = useState(null);
@@ -35,21 +36,13 @@ const WeeklyFeedback = ({ weekFeedback }) => {
                     <div className="card-header">
                         <h4>{formatDate(feedback.Date)}</h4>
                         <div className="mood-icon">
-                            {feedback.mood === 'Happy' ? (
-                                <span role="img" aria-label="happy" style={{ color: 'green' }}>
-                                    😊
-                                </span>
-                            ) : (
-                                <span role="img" aria-label="sad" style={{ color: 'red' }}>
-                                    😞
-                                </span>
-                            )}
+                            {feedback.mood === 'Happy' ? (<FaSmile style={{ color: 'green' }} />) : (<FaSadTear style={{ color: 'red' }} />)}
                         </div>
                     </div>
                     <div className={`card-body ${expandedIndex === index ? 'show' : ''}`}>
-                        <p><strong>Activities:</strong> {feedback.activities.join(', ')}</p>
-                        <p><strong>Social Interaction:</strong> <span role="img" aria-label="group">👫</span> {feedback.socialInteraction}</p>
-                        <p><strong>Notes:</strong> {feedback.notes}</p>
+                        <p><strong>Activities: </strong> {feedback.activities.join(', ')}</p>
+                        <p><strong>Social Interaction: </strong>{feedback.socialInteraction}</p>
+                        <p><strong>Notes: </strong> {feedback.notes}</p>
                     </div>
                 </div>
             ))}

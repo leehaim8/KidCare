@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { FaHome, FaChartBar, FaClipboardList, FaBook, FaUserFriends, FaCog, FaSignOutAlt } from "react-icons/fa";
 
 const HamburgerMenu = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -22,15 +23,15 @@ const HamburgerMenu = () => {
                 <button className="close-button" onClick={toggleMenu}>✖</button>
                 <nav className="menu-nav">
                     <ul className="top-links">
-                        <li><Link to="/HomePage">🏠 HomePage</Link></li>
-                        <li><Link to="/WeeklyFeedback">📊 Weekly Feedback</Link></li>
-                        <li><Link to="#">🔄 Periodic Feedback</Link></li>
-                        <li><Link to="#">📚 Resource Library</Link></li>
-                        <li><Link to="/Experts">👥 External Professional Directory</Link></li>
+                        <li><Link to="/HomePage"> <FaHome /> HomePage</Link></li>
+                        <li><Link to="/WeeklyFeedback"><FaChartBar /> Weekly Feedback</Link></li>
+                        <li><Link to="#"><FaClipboardList /> Periodic Feedback</Link></li>
+                        <li><Link to="#"><FaBook /> Resource Library</Link></li>
+                        <li><Link to="/Experts"><FaUserFriends /> External Professional Directory</Link></li>
                     </ul>
                     <ul className="bottom-links">
-                        <li><button onClick={handleLogout}>🚪 Log-out</button></li>
-                        <li><Link to="#">⚙️ Setting</Link></li>
+                        <li><button onClick={handleLogout}><FaSignOutAlt /> Log-out</button></li>
+                        <li><Link to="#"><FaCog /> Setting</Link></li>
                     </ul>
                 </nav>
             </div>
