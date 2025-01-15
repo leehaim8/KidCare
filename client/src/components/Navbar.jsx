@@ -26,7 +26,7 @@ const HamburgerMenu = () => {
                         <li><Link to="/WeeklyFeedback">📊 Weekly Feedback</Link></li>
                         <li><Link to="#">🔄 Periodic Feedback</Link></li>
                         <li><Link to="#">📚 Resource Library</Link></li>
-                        <li><Link to="#">👥 External Professional Directory</Link></li>
+                        <li><Link to="/Experts">👥 External Professional Directory</Link></li>
                     </ul>
                     <ul className="bottom-links">
                         <li><button onClick={handleLogout}>🚪 Log-out</button></li>

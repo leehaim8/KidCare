@@ -36,6 +36,7 @@ import AddChild from './addChild';
 import WeeklyFeedback from './WeeklyFeedback';
 import ChildInfo from './childInfo';
 import Footer from './Footer';
+import Expert from './Experts';
 
 const AppContent = () => {
   const location = useLocation();
@@ -54,6 +55,7 @@ const AppContent = () => {
         <Route path="/addChild" element={<ProtectedRoute element={<AddChild />} />} />
         <Route path="/WeeklyFeedback" element={<ProtectedRoute element={<WeeklyFeedback />} />} />
         <Route path="/childInfo/:id" element={<ProtectedRoute element={<ChildInfo />} />} />
+        <Route path="/Experts" element={<ProtectedRoute element={<Expert />} />} />
       </Routes>
       {shouldShowFooter() && <Footer />}
     </div>
