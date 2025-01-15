@@ -10,6 +10,7 @@ function WeeklyFeedback() {
         name: "",
         mood: "",
         activities: "",
+        date: "",
         health: 5, // Default range value for Physical Health
         socialInteraction: "",
         learningProgress: 5, // Default range value for Learning Progress
@@ -67,6 +68,7 @@ function WeeklyFeedback() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const userID = localStorage.getItem("token");
+        console.log(formData);
         try {
             const response = await fetch(`http://localhost:8080/api/weekFeedBack/${userID}/addFeedback`, {
                 method: "POST",
@@ -113,7 +115,16 @@ function WeeklyFeedback() {
                             {renderChildrenOptions()}
                         </select>
                     </div>
-
+                    <div className="add-child-week-form-div">
+                        <label>Date:</label>
+                        <Input
+                            type="date"
+                            name="date"
+                            value={formData.date}
+                            onChange={handleChange}
+                            dateFormat="YYYY-DD-MM"
+                        />
+                    </div>
                     <div className="add-child-week-form-div">
                         <label>Mood/Behavior:</label>
                         <Input

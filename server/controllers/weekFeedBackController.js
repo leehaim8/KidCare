@@ -10,9 +10,8 @@ const weekFeedBackController = {
         }
     },
     async addChildWeekFeedBack(req, res) {
-        const { ChildID, name, mood, activities, health, socialInteraction, learningProgress, notes } = req.body;
-
-        if (!(ChildID, name, mood, activities, health, socialInteraction, learningProgress, notes)) {
+        const { ChildID, name, mood, activities, health, socialInteraction, learningProgress, notes, date } = req.body;
+        if (!(ChildID, name, mood, activities, health, socialInteraction, learningProgress, notes, date)) {
             return res.status(400).json({ message: "One of the filed are missing!" });
         }
 
@@ -25,7 +24,8 @@ const weekFeedBackController = {
                 health,
                 socialInteraction,
                 learningProgress,
-                notes
+                notes,
+                Date: date
             });
 
             await newFeedBack.save();

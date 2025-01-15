@@ -27,12 +27,8 @@ const WeeklyFeedback = ({ weekFeedback }) => {
                     Add Weekly Feedback
                 </button>
             </div>
-            {weekFeedback.map((feedback, index) => (
-                <div
-                    key={index}
-                    className={`feedback-card ${expandedIndex === index ? 'expanded' : ''}`}
-                    onClick={() => handleToggleExpand(index)}
-                >
+            {weekFeedback.length === 0 ? (<p className="no-feedback-message">No feedbacks available yet.</p>) : (weekFeedback.map((feedback, index) => (
+                <div key={index} className={`feedback-card ${expandedIndex === index ? 'expanded' : ''}`} onClick={() => handleToggleExpand(index)}>
                     <div className="card-header">
                         <h4>{formatDate(feedback.Date)}</h4>
                         <div className="mood-icon">
@@ -45,7 +41,8 @@ const WeeklyFeedback = ({ weekFeedback }) => {
                         <p><strong>Notes: </strong> {feedback.notes}</p>
                     </div>
                 </div>
-            ))}
+            ))
+            )}
         </div>
     );
 };
