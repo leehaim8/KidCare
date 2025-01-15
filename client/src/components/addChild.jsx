@@ -47,7 +47,7 @@ function AddChild() {
     const handleRegister = async (e) => {
         e.preventDefault();
 
-        if (!formData.name || !formData.age || !formData.phone || formData.gender || formData.motherName || formData.fatherName) {
+        if (!formData.name || !formData.age || !formData.phone || !formData.gender || !formData.motherName || !formData.fatherName) {
             alert("Please fill in all required fields.");
             return;
         }
@@ -81,49 +81,58 @@ function AddChild() {
             <div className="add-child-container">
                 <h1>Add a Child</h1>
                 <form className="add-child-form" onSubmit={handleRegister}>
-                    <div className="add-child-div">
-                        <label>Child Name:</label>
-                        <Input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} />
-                    </div>
-                    <div className="add-child-div">
-                        <label>Child Age:</label>
-                        <Input type="number" name="age" placeholder="Age" value={formData.age} onChange={handleChange} />
-                    </div>
-                    <div className="add-child-div">
-                        <label>Child Mother Name:</label>
-                        <Input type="text" name="motherName" placeholder="Mother Name" value={formData.motherName} onChange={handleChange} />
-                    </div>
-                    <div className="add-child-div">
-                        <label>Child Father Name:</label>
-                        <Input type="text" name="fatherName" placeholder="Father Name" value={formData.fatherName} onChange={handleChange} />
-                    </div>
-                    <div className="add-child-div">
-                        <label>Phone Number:</label>
-                        <Input type="tel" name="phone" placeholder="Phone" value={formData.phone} onChange={handleChange} />
-                    </div>
-                    <div className="add-child-div">
-                        <label>Child Gender:</label>
-                        <select name="gender" value={formData.gender} onChange={handleChange}>
-                            <option value="">Select Gender</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                    </div>
-                    <div className="add-child-div child-allergies">
-                        <label>Child Allergies:</label>
-                        {allergiesList.map((allergy) => (
-                            <label className="child-allergies-label" key={allergy}>
-                                <input
-                                    type="checkbox"
-                                    name="allergies"
-                                    value={allergy}
-                                    checked={formData.allergies.includes(allergy)}
-                                    onChange={handleChange}
-                                />
-                                {allergy}
-                            </label>
-                        ))}
-                    </div>
+                    <fieldset>
+                        <legend>Child Details</legend>
+                        <div className="add-child-div">
+                            <label>Child Name:</label>
+                            <Input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} />
+                        </div>
+                        <div className="add-child-div">
+                            <label>Child Age:</label>
+                            <Input type="number" name="age" placeholder="Age" value={formData.age} onChange={handleChange} />
+                        </div>
+                        <div className="add-child-div">
+                            <label>Child Gender:</label>
+                            <select name="gender" value={formData.gender} onChange={handleChange}>
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div className="add-child-div child-allergies">
+                            <label>Child Allergies:</label>
+                            <div className="child-allergies-div">
+                                {allergiesList.map((allergy) => (
+                                    <label className="child-allergies-label" key={allergy}>
+                                        <input
+                                            type="checkbox"
+                                            name="allergies"
+                                            value={allergy}
+                                            checked={formData.allergies.includes(allergy)}
+                                            onChange={handleChange}
+                                        />
+                                        {allergy}
+                                    </label>
+                                ))}
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Parent Details</legend>
+                        <div className="add-child-div">
+                            <label>Mother's Name:</label>
+                            <Input type="text" name="motherName" placeholder="Mother Name" value={formData.motherName} onChange={handleChange} />
+                        </div>
+                        <div className="add-child-div">
+                            <label>Father's Name:</label>
+                            <Input type="text" name="fatherName" placeholder="Father Name" value={formData.fatherName} onChange={handleChange} />
+                        </div>
+                        <div className="add-child-div">
+                            <label>Phone Number:</label>
+                            <Input type="tel" name="phone" placeholder="Phone" value={formData.phone} onChange={handleChange} />
+                        </div>
+                    </fieldset>
+
                     <button type="submit">Submit</button>
                 </form>
             </div>

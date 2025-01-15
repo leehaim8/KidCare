@@ -361,10 +361,20 @@ h1 {
     align-items: stretch;
 }
 
+.add-child-form fieldset {
+    padding: 20px;
+}
+
+.add-child-form legend {
+    font-size: 18px;
+    color: #000;
+}
+
 .add-child-div {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
+    width: 500px;
 }
 
 label {
@@ -385,14 +395,6 @@ select {
     border-radius: 10px;
     transition: all 0.3s ease;
     box-sizing: border-box;
-}
-
-input[type="checkbox"] {
-    width: auto;
-}
-
-input[type="checkbox"]:checked {
-    background-color: var(--form-color);
 }
 
 input[type="text"]:focus,
@@ -420,32 +422,30 @@ button[type="submit"]:hover {
     background-color: #7a39b5;
 }
 
-.add-child-form select {
-    width: 250px;
-    margin-left: 75px;
-}
-
-.child-allergies {
-    margin-bottom: 20px;
+.child-allergies-div {
+    display: flex;
+    flex-direction: row;
+    max-width: 430px;
+    margin-left: 40px;
 }
 
 .child-allergies-label {
     display: inline-block;
     font-size: 16px;
-    margin-bottom: 10px;
+    margin-top: 10px;
     color: #6a2e94;
     margin-right: 10px;
 }
 
 .child-allergies-checkboxes {
     display: flex;
-    gap: 15px;
     align-items: center;
     justify-content: flex-start;
 }
 
 input[type="checkbox"] {
     width: auto;
+    margin-right: 8px;
 }
 
 input[type="checkbox"]:checked {
@@ -707,7 +707,8 @@ input[type="range"]::-moz-range-thumb {
     margin-bottom: 15px;
 }
 
-.send-message-btn, .fill-feedback-btn {
+.send-message-btn,
+.fill-feedback-btn {
     background-color: var(--form-color);
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
     color: white;
@@ -723,7 +724,8 @@ input[type="range"]::-moz-range-thumb {
     margin-top: 5px;
 }
 
-.send-message-btn:hover, .fill-feedback-btn:hover {
+.send-message-btn:hover,
+.fill-feedback-btn:hover {
     background-color: #45a049;
 }
 
@@ -766,4 +768,3 @@ input[type="range"]::-moz-range-thumb {
 .feedback-card .mood-icon span:hover {
     transform: scale(1.2);
 }
-
