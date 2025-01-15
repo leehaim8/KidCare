@@ -12,7 +12,8 @@ const childrenSchema = new Schema({
         phone: { type: String, required: true }
     },
     childID: { type: Number, required: true },
-    image: { type: String, required: true }
+    image: { type: String, required: true },
+    birthday: { type: String, require: true }
 }, { collection: "children" });
 
 const Children = mongoose.model("Children", childrenSchema);

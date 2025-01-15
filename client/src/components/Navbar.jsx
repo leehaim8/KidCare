@@ -12,7 +12,7 @@ const HamburgerMenu = () => {
 
     const handleLogout = () => {
         localStorage.removeItem("token");
-
+        localStorage.removeItem("birthdayModalShown");
         navigate("/login");
     };
 
