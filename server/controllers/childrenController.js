@@ -17,10 +17,10 @@ const childrenController = {
     },
     async addChild(req, res) {
         const { userID } = req.params;
-        const { name, age, allergies, motherName, fatherName, phone, gender } = req.body;
+        const { name, age, allergies, motherName, fatherName, phone, gender, birthday } = req.body;
         const contactInfo = { mother: motherName, father: fatherName, phone: phone };
 
-        if (!(name, age, allergies, motherName, fatherName, phone)) {
+        if (!(name, age, allergies, motherName, fatherName, phone, birthday)) {
             return res.status(400).json({ message: "One of the filed are missing!" });
         }
 
@@ -40,7 +40,8 @@ const childrenController = {
                 allergies,
                 contactInfo,
                 childID: lastID + 1,
-                image: imageValue
+                image: imageValue,
+                birthday
             });
 
             await newChild.save();
@@ -52,7 +53,6 @@ const childrenController = {
     },
     async getChildDetails(req, res) {
         const { childID } = req.params;
-        console.log(childID);
         if (!childID) {
             return res.status(400).json({ message: "User ID is required" });
         }
@@ -64,13 +64,36 @@ const childrenController = {
             if (!childDetails) {
                 return res.status(404).json({ message: 'Child not found' });
             }
-            console.log(childDetails);
-            console.log(weekFeedback);
+
             res.json({ childDetails, weekFeedback });
         } catch (error) {
             res.status(500).json({ message: error.message });
         }
+    },
+    async getChildBirthday(req, res) {
+        const { userID } = req.params;
+        if (!userID) {
+            return res.status(400).json({ message: "User ID is required" });
+        }
+
+        try {
+            const today = new Date();
+            const todayDayMonth = `${String(today.getDate()).padStart(2, '0')}-${String(today.getMonth() + 1).padStart(2, '0')}`;
+            const birthdays = await Children.find({
+                userID: userID,
+                birthday: { $regex: new RegExp(`^${todayDayMonth}-\\d{4}$`) }
+            });
+
+            if (birthdays.length > 0) {
+                res.status(200).json({ message: "There are birthdays today!", birthdays });
+            } else {
+                res.status(200).json({ message: "No birthdays today" });
+            }
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
     }
+
 };
 
 module.exports = { childrenController };

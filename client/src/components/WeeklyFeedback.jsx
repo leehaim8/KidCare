@@ -10,6 +10,7 @@ function WeeklyFeedback() {
         name: "",
         mood: "",
         activities: "",
+        date: "",
         health: 5, // Default range value for Physical Health
         socialInteraction: "",
         learningProgress: 5, // Default range value for Learning Progress
@@ -122,7 +123,16 @@ function WeeklyFeedback() {
                         </select>
                         <span className="errorForm" id="selectError">*please select a child</span>
                     </div>
-
+                    <div className="add-child-week-form-div">
+                        <label>Date:</label>
+                        <Input
+                            type="date"
+                            name="date"
+                            value={formData.date}
+                            onChange={handleChange}
+                            dateFormat="YYYY-DD-MM"
+                        />
+                    </div>
                     <div className="add-child-week-form-div">
                         <label>Mood/Behavior:</label>
                         <Input

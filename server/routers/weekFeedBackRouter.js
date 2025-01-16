@@ -3,7 +3,6 @@ const { weekFeedBackController } = require('../controllers/weekFeedBackControlle
 
 const weekFeedBackRouter = new Router();
 
-
 weekFeedBackRouter.post('/:userID/addFeedback', weekFeedBackController.addChildWeekFeedBack);
 
 module.exports = { weekFeedBackRouter };

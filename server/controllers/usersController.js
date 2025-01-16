@@ -1,9 +1,11 @@
 const User = require("../models/userModel");
 
 const usersController = {
-    // Register new user
     async register(req, res) {
         const { name, username, password } = req.body;
+        if (!(name, username, password)) {
+            return res.status(400).json({ message: "One of the filed are missing!" });
+        }
 
         try {
             const existingUser = await User.findOne({ username });
@@ -27,9 +29,11 @@ const usersController = {
             res.status(500).json({ message: "Server error", error });
         }
     },
-    // Login user
     async login(req, res) {
         const { username, password } = req.body;
+        if (!(username, password)) {
+            return res.status(400).json({ message: "One of the filed are missing!" });
+        }
 
         try {
             const user = await User.findOne({ username: username });
@@ -46,7 +50,6 @@ const usersController = {
             res.status(500).json({ message: "Server error", error: error });
         }
     },
-    // Get all users
     async getUsers(req, res) {
         try {
             const users = await User.find();
