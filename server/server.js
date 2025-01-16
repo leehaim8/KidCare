@@ -7,6 +7,7 @@ const PORT = 8080;
 const { usersRouter } = require('./routers/usersRouter');
 const { childrenRouter } = require('./routers/childrenRouter');
 const { weekFeedBackRouter } = require('./routers/weekFeedBackRouter');
+const{ periodicFeedbackRouter } = require('./routers/periodicFeedbackRouter');
 const { expertRouter } = require('./routers/expertRouter');
 
 app.use(cors({
@@ -23,6 +24,7 @@ app.use("/public", express.static(path.join(__dirname, 'public')));
 app.use('/api/users', usersRouter);
 app.use('/api/children', childrenRouter);
 app.use('/api/weekFeedBack', weekFeedBackRouter);
+app.use('/api/periodicFeedback', periodicFeedbackRouter);
 app.use('/api/expert', expertRouter);
 
 app.listen(PORT, () => {

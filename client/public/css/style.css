@@ -370,7 +370,6 @@ label {
     font-size: 18px;
     color: #6a2e94;
     font-weight: bold;
-    width: 150px;
 }
 
 input[type="text"],
@@ -440,14 +439,6 @@ button[type="submit"]:hover {
     gap: 15px;
     align-items: center;
     justify-content: flex-start;
-}
-
-input[type="checkbox"] {
-    width: auto;
-}
-
-input[type="checkbox"]:checked {
-    background-color: var(--form-color);
 }
 
 .breadcrumbs-container {
@@ -926,5 +917,144 @@ input[type="range"]::-moz-range-thumb {
 .modal-content button:hover {
     background-color: #0056b3;
 }
+
+.Periodic-container{
+    margin: 100px;
+}
+
+/* PeriodicFeedback.css */
+
+/* General styles for boxes */
+.periodic-box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #EDE7F6;
+    padding: 16px;
+    border-radius: 8px;
+    margin: 50px;
+}
+
+/* Typography styles (optional) */
+.periodic-box h6 {
+    margin-bottom: 16px;
+    font-weight: bold;
+}
+.Field-style {
+    margin: 5px 0 !important;
+}
+
+.MuiFormControlLabel-root {
+    display: flex;
+    align-items: center; /* Ensures the checkbox and label align vertically */
+    gap: 8px; /* Adds spacing between checkbox and label */
+}
+
+.checkbox-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Ensures vertical alignment */
+    gap: 8px; /* Adds spacing between the label and the checkbox */
+}
+
+.checkbox-label {
+    margin: 0; /* Removes any extra margin around the Typography */
+}
+
+.range-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.range-container input[type="range"] {
+    width: 100%;
+}
+
+.range-container strong {
+    font-weight: bold;
+    color: #6a2e94;
+}
+.icon-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+    gap: 10px;
+}
+
+.icon-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 24px; /* Icon size */
+    cursor: pointer;
+    transition: transform 0.2s;
+    width: 100px;
+}
+
+.icon-button.Mui-selected {
+    background-color: #dcd6f7;
+    border-color: #9b4dca;
+    transform: scale(1.1);
+}
+
+.step-description {
+    margin-bottom: 10px;
+    color: #6a2e94;
+    font-weight: bold;
+}
+
+.icon-button span {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.icon-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+    gap: 10px;
+}
+
+.icon-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 24px; /* Icon size */
+    cursor: pointer;
+    transition: transform 0.2s;
+    width: 100px;
+}
+
+.icon-button.Mui-selected {
+    background-color: #dcd6f7;
+    border-color: #9b4dca;
+    transform: scale(1.1);
+}
+
+.step-description {
+    margin-bottom: 10px;
+    color: #6a2e94;
+    font-weight: bold;
+}
+
+.Field-style {
+    margin: 16px 0;
+}
+
+.toggle-group {
+    display: flex;
+    gap: 10px;
+}
+
+
+
 
 
