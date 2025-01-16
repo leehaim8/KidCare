@@ -373,7 +373,6 @@ label {
     width: 150px;
 }
 
-input[type="text"],
 input[type="number"],
 input[type="tel"],
 select {
@@ -383,7 +382,6 @@ select {
     border: 2px solid var(--form-color);
     border-radius: 10px;
     transition: all 0.3s ease;
-    box-sizing: border-box;
 }
 
 input[type="checkbox"] {
@@ -695,8 +693,9 @@ input[type="range"]::-moz-range-thumb {
 
 .errorForm {
     color: red;
-    font-size: 16px;
+    font-size: 14px;
     margin-top: 5px;
+    border-radius: 10px;
     display: none;
 }
 
@@ -709,4 +708,6 @@ input[type="range"]::-moz-range-thumb {
     display: flex;
     justify-content: space-between;
 }
+
+
 
