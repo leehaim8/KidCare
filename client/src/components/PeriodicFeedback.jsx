@@ -194,15 +194,16 @@ export default function PeriodicFeedback() {
                 Is the child able to sleep during nap time?
             </Typography>
             <ToggleButtonGroup
-                value={field.value}
+                value={field.value ? "yes" : "no"}
                 exclusive
                 onChange={(e, value) => {
                     if (value !== null) {
-                        form.setFieldValue("sleepingQuality", value);
+                        form.setFieldValue("sleepingQuality",  value === "yes");
                     }
                 }}
                 aria-label="Sleeping Quality"
                 className="toggle-group"
+                
             >
                 <ToggleButton value="yes" aria-label="Yes">
                     Yes
