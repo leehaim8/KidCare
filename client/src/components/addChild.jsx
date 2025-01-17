@@ -9,6 +9,7 @@ const allergiesList = ["Peanuts", "Milk", "Fish", "Eggs", "Soy"];
 function AddChild() {
     const [formData, setFormData] = useState({
         name: "",
+        birthday: "",
         age: "",
         allergies: [],
         motherName: "",
@@ -46,7 +47,6 @@ function AddChild() {
 
     const handleRegister = async (e) => {
         e.preventDefault();
-
         if (!formData.name || !formData.age || !formData.phone || !formData.gender || !formData.motherName || !formData.fatherName) {
             alert("Please fill in all required fields.");
             return;
@@ -90,6 +90,10 @@ function AddChild() {
                         <div className="add-child-div">
                             <label>Child Age:</label>
                             <Input type="number" name="age" placeholder="Age" value={formData.age} onChange={handleChange} />
+                        </div>
+                        <div className="add-child-div">
+                            <label>Child Birthday:</label>
+                            <Input type="date" name="birthday" placeholder="Birthday" value={formData.birthday} onChange={handleChange} />
                         </div>
                         <div className="add-child-div">
                             <label>Child Gender:</label>

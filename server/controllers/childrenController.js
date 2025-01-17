@@ -92,6 +92,40 @@ const childrenController = {
         } catch (error) {
             res.status(500).json({ message: error.message });
         }
+    },
+    async deleteChildren(req, res) {
+        const { childID } = req.params;
+        if (!childID) {
+            return res.status(400).json({ message: "child ID is required" });
+        }
+
+        try {
+            const deleteUser = await Children.findOneAndDelete({ childID });
+            if (!deleteUser) {
+                return res.status(404).json({ message: "Child not found" });
+            }
+
+            res.status(200).json({ message: "Child deleted successfully" });
+        } catch (error) {
+            res.status(500).json({ message: "Internal Server Error", error: error.message });
+        }
+    },
+    async updateChildren(req, res) {
+        const { childID } = req.params;
+        if (!childID) {
+            return res.status(400).json({ message: "child ID is required" });
+        }
+
+        try {
+            const deleteUser = await Children.findOneAndDelete({ childID });
+            if (!deleteUser) {
+                return res.status(404).json({ message: "Child not found" });
+            }
+
+            res.status(200).json({ message: "Child deleted successfully" });
+        } catch (error) {
+            res.status(500).json({ message: "Internal Server Error", error: error.message });
+        }
     }
 
 };
