@@ -252,6 +252,7 @@ form button:hover {
     width: 80px;
     height: 80px;
     border-radius: 50%;
+    margin-left: 35px;
 }
 
 .header-container header {
@@ -260,12 +261,19 @@ form button:hover {
     justify-content: center;
 }
 
+.header-container img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
 .children-cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     margin-top: 120px;
     padding: 20px;
+    margin-bottom: 80px;
 }
 
 .children-cards {
@@ -604,6 +612,28 @@ input[type="range"]::-moz-range-thumb {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.child-info-container-div {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    margin-bottom: 20px;
+}
+
+.child-info-container-button {
+    background-color: var(--form-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.child-info-container-button:hover {
+    background-color: var(--card--color);
 }
 
 .child-info-card {

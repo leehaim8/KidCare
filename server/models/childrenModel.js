@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const childrenSchema = new Schema({
-    userID: { type: String, required: true },
+    userID: { type: Number, required: true },
     name: { type: String, required: true },
     age: { type: Number, required: true },
     allergies: [{ type: String, required: true }],
