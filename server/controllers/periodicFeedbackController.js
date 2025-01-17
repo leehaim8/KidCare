@@ -11,9 +11,7 @@ const PeriodicFeedbackController = {
     },
     async addChildPeriodicFeedback(req, res) {
         const {
-            childID,
-            firstName,
-            lastName,
+            childDeatails,
             energyLevel,
             eatingHabits,
             sleepingQuality,
@@ -42,9 +40,7 @@ const PeriodicFeedbackController = {
     
         try {
             const newFeedBack = new PeriodicFeedBack({
-                childID,
-                firstName,
-                lastName,
+                childDeatails,
                 energyLevel,
                 eatingHabits,
                 sleepingQuality,

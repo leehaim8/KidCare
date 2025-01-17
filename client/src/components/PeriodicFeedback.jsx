@@ -29,21 +29,39 @@ import { Navigate } from "react-router-dom";
 
 export default function PeriodicFeedback() {
     const initialValues = {
-        childID: "",
-        firstName: "",
-        lastName: "",
-        energyLevel: 3,
-        eatingHabits: "",
-        sleepingQuality: "",
-        physicalActivity: false,
-        mood: 3,
-        emotionalExpression: "",
-        socialInteraction: "",
-        groupContribution: false,
-        conflictResolution: "",
-        feelsSafe: false,
-        asksForHelp: false,
-        generalNotes: ""
+    // Child Selection
+    childDeatails:"",
+
+    // General Well-being
+    energyLevel: 3,
+    eatingHabits: "",
+    sleepingQuality: false,
+    physicalActivity: false,
+    mood: 3,
+    emotionalExpression: "",
+    socialInteraction: "",
+    groupContribution: false,
+    conflictResolution: "",
+    feelsSafe: false,
+    asksForHelp: false,
+    generalNotes: "",
+
+    // Learning & Participation
+    participationLevel: "",
+    activityFocus: "",
+    teamwork: "",
+    selfInitiative: "",
+    fineMotorSkills: "",
+    grossMotorSkills: "",
+    cognitiveSkills: "",
+    emotionalGrowth: "",
+    participationNotes: "",
+
+    // Additional Feedback
+    specialNotes: "",
+    suggestionsForImprovement: "",
+    overallSatisfaction: "",
+    meetingRequest: false,
     };
     const [childrens, setChildrens] = useState([]);
 
@@ -111,10 +129,10 @@ export default function PeriodicFeedback() {
                             <Box paddingBottom={2}>
                                 <FormControl fullWidth>
                                     <InputLabel id="child-select-label">Select a Child</InputLabel>
-                                    <Field name="childID" as={Select} labelId="child-select-label" fullWidth>
+                                    <Field name="childDeatails" as={Select} labelId="child-select-label" fullWidth>
                                         <MenuItem value=""><em>Select a child</em></MenuItem>
                                         {childrens.map((child) => (
-                                            <MenuItem key={child._id} value={child._id}>{child.name}</MenuItem>
+                                            <MenuItem key={child._id} value={JSON.stringify({ id: child._id, name: child.name })}>{child.name}</MenuItem>
                                         ))}
                                     </Field>
                                 </FormControl>
@@ -130,8 +148,7 @@ export default function PeriodicFeedback() {
         eatingHabits: string()
             .required("Eating habits description is required")
             .max(500, "Description is too long (max 500 characters)"),
-        sleepingQuality: string()
-            .oneOf(["yes", "no"], "Please select 'Yes' or 'No'")
+        sleepingQuality: boolean()
             .required("Sleeping quality assessment is required"),
         physicalActivity: boolean()
             .required("Please select if the child engages in physical activity"),
@@ -157,6 +174,7 @@ export default function PeriodicFeedback() {
         generalNotes: string()
             .max(1000, "Notes are too long (max 1000 characters)"),
     })}
+    
 >
     {/* Physical Well-being */}
     <Box className="periodic-box">
@@ -187,23 +205,22 @@ export default function PeriodicFeedback() {
     rows={3}
 />
 
-        <Field name="sleepingQuality">
-    {({ field, form }) => (
-        <div className="toggle-container">
-            <Typography variant="body1" className="toggle-label">
-                Is the child able to sleep during nap time?
-            </Typography>
+<div className="toggle-container">
+    <Typography variant="body1" className="toggle-label">
+        Does the child sleep well at night?
+    </Typography>
+    <Field name="sleepingQuality">
+        {({ field, form }) => (
             <ToggleButtonGroup
                 value={field.value ? "yes" : "no"}
                 exclusive
                 onChange={(e, value) => {
                     if (value !== null) {
-                        form.setFieldValue("sleepingQuality",  value === "yes");
+                        form.setFieldValue("sleepingQuality", value === "yes");
                     }
                 }}
-                aria-label="Sleeping Quality"
+                aria-label="sleepingQuality"
                 className="toggle-group"
-                
             >
                 <ToggleButton value="yes" aria-label="Yes">
                     Yes
@@ -212,9 +229,9 @@ export default function PeriodicFeedback() {
                     No
                 </ToggleButton>
             </ToggleButtonGroup>
-        </div>
-    )}
-</Field>
+        )}
+    </Field>
+</div>
 <div className="toggle-container">
     <Typography variant="body1" className="toggle-label">
         Does the child engage in physical activity?
@@ -451,7 +468,7 @@ export default function PeriodicFeedback() {
                             className="icon-button"
                         >
                             {option.icon}
-                            <Typography variant="body2">{option.label}</Typography>
+                            <Typography variant="body2" className="icon-label">{option.label}</Typography>
                         </ToggleButton>
                     ))}
                 </Box>
@@ -478,7 +495,7 @@ export default function PeriodicFeedback() {
                             className="icon-button"
                         >
                             {option.icon}
-                            <Typography variant="body2">{option.label}</Typography>
+                            <Typography variant="body2" className="icon-label">{option.label}</Typography>
                         </ToggleButton>
                     ))}
                 </Box>
@@ -505,7 +522,7 @@ export default function PeriodicFeedback() {
                             className="icon-button"
                         >
                             {option.icon}
-                            <Typography variant="body2">{option.label}</Typography>
+                            <Typography variant="body2" className="icon-label">{option.label}</Typography>
                         </ToggleButton>
                     ))}
                 </Box>
@@ -532,7 +549,7 @@ export default function PeriodicFeedback() {
                             className="icon-button"
                         >
                             {option.icon}
-                            <Typography variant="body2">{option.label}</Typography>
+                            <Typography variant="body2" className="icon-label">{option.label}</Typography>
                         </ToggleButton>
                     ))}
                 </Box>
@@ -559,7 +576,7 @@ export default function PeriodicFeedback() {
                             className="icon-button"
                         >
                             {option.icon}
-                            <Typography variant="body2">{option.label}</Typography>
+                            <Typography variant="body2" className="icon-label">{option.label}</Typography>
                         </ToggleButton>
                     ))}
                 </Box>
@@ -586,7 +603,7 @@ export default function PeriodicFeedback() {
                             className="icon-button"
                         >
                             {option.icon}
-                            <Typography variant="body2">{option.label}</Typography>
+                            <Typography variant="body2" className="icon-label">{option.label}</Typography>
                         </ToggleButton>
                     ))}
                 </Box>
@@ -613,7 +630,7 @@ export default function PeriodicFeedback() {
                             className="icon-button"
                         >
                             {option.icon}
-                            <Typography variant="body2">{option.label}</Typography>
+                            <Typography variant="body2" className="icon-label">{option.label}</Typography>
                         </ToggleButton>
                     ))}
                 </Box>
@@ -713,7 +730,7 @@ export default function PeriodicFeedback() {
                             className="icon-button"
                         >
                             {option.icon}
-                            <Typography variant="body2">{option.label}</Typography>
+                            <Typography variant="body2" className="icon-label">{option.label}</Typography>
                         </ToggleButton>
                     ))}
                 </Box>

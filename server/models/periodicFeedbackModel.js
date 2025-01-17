@@ -3,14 +3,12 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const periodicFeedBackSchema = new Schema({
-    childID: { type: String },
-    firstName: { type: String },
-    lastName: { type: String  },
+    childDeatails: { type: String },
 
     // General Well-being
     energyLevel: { type: Number, required: true, min: 0, max: 5 },
     eatingHabits: { type: String, required: true },
-    sleepingQuality: { type: String, enum: ["yes", "no"], required: true },
+    sleepingQuality: { type: Boolean, required: true },
     physicalActivity: { type: Boolean, required: true },
     mood: { type: Number, required: true, min: 0, max: 5 },
     emotionalExpression: { type: String, required: true },

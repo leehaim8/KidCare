@@ -288,7 +288,7 @@ form button:hover {
 
 .child-card {
     width: 200px;
-    height: 250px;
+    height: 300px;
     border: 3px solid var(--header-color);
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -948,54 +948,54 @@ input[type="range"]::-moz-range-thumb {
     background-color: #0056b3;
 }
 
-.Periodic-container{
-    margin: 100px;
+/* General container styles */
+.Periodic-container {
+    margin: 2rem auto; /* Center the form */
+    max-width: 1200px; /* Set a max width for larger screens */
+    padding: 1rem;
 }
 
-/* PeriodicFeedback.css */
-
-/* General styles for boxes */
+/* Periodic feedback box styles */
 .periodic-box {
     display: flex;
     flex-direction: column;
     height: 100%;
     background-color: #EDE7F6;
-    padding: 16px;
+    padding: 1.5rem;
     border-radius: 8px;
-    margin: 50px;
+    margin: 2rem 1rem; /* Add spacing between boxes */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a slight shadow for better focus */
 }
 
-/* Typography styles (optional) */
+/* Responsive typography */
 .periodic-box h6 {
-    margin-bottom: 16px;
+    font-size: 1.5rem; /* Adjust font size */
+    margin-bottom: 1rem;
     font-weight: bold;
 }
+
+.periodic-box p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+/* Field styling */
 .Field-style {
-    margin: 5px 0 !important;
+    margin: 0.5rem 0 !important;
+    font-size: 1rem;
 }
 
 .MuiFormControlLabel-root {
-    display: flex;
-    align-items: center; /* Ensures the checkbox and label align vertically */
-    gap: 8px; /* Adds spacing between checkbox and label */
-}
-
-.checkbox-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center; /* Ensures vertical alignment */
-    gap: 8px; /* Adds spacing between the label and the checkbox */
-}
-
-.checkbox-label {
-    margin: 0; /* Removes any extra margin around the Typography */
+    gap: 0.5rem;
+    font-size: 1rem;
 }
 
 .range-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
 }
 
 .range-container input[type="range"] {
@@ -1006,11 +1006,14 @@ input[type="range"]::-moz-range-thumb {
     font-weight: bold;
     color: #6a2e94;
 }
+
+/* Icon buttons for ratings */
 .icon-container {
     display: flex;
-    justify-content: space-between;
-    margin: 15px 0;
-    gap: 10px;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    margin: 1.5rem 0;
+    gap: 1rem;
 }
 
 .icon-button {
@@ -1019,11 +1022,12 @@ input[type="range"]::-moz-range-thumb {
     align-items: center;
     border: 1px solid #ccc;
     border-radius: 8px;
-    padding: 10px;
-    font-size: 24px; /* Icon size */
+    padding: 1rem;
+    font-size: 1.5rem;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.2s ease-in-out;
     width: 100px;
+    text-align: center;
 }
 
 .icon-button.Mui-selected {
@@ -1033,47 +1037,93 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .step-description {
-    margin-bottom: 10px;
+    font-size: 1rem;
     color: #6a2e94;
     font-weight: bold;
+    margin-bottom: 1rem;
 }
 
-.icon-button span {
-    font-size: 24px;
-    margin-bottom: 5px;
+/* Responsive adjustments with media queries */
+@media (max-width: 768px) {
+    .Periodic-container {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .periodic-box {
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+
+    .icon-container {
+        justify-content: space-between; /* Distribute icons evenly */
+    }
+
+    .icon-button {
+        width: 80px; /* Adjust button size for smaller screens */
+        padding: 0.5rem;
+        font-size: 1.2rem;
+    }
+
+    .periodic-box h6 {
+        font-size: 1.25rem; /* Reduce heading size */
+    }
+
+    .Field-style {
+        font-size: 0.9rem; /* Adjust input font size */
+    }
+
+    .step-description {
+        font-size: 0.9rem;
+    }
 }
 
-.icon-container {
-    display: flex;
-    justify-content: space-between;
-    margin: 15px 0;
-    gap: 10px;
+@media (max-width: 480px) {
+    .Periodic-container {
+        margin: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    .periodic-box {
+        padding: 0.75rem;
+        margin: 0.5rem 0;
+    }
+
+    .icon-container {
+        gap: 0.5rem;
+    }
+
+    .icon-button {
+        width: 70px;
+        padding: 0.4rem;
+        font-size: 1rem;
+    }
+
+    .periodic-box h6 {
+        font-size: 1rem;
+    }
+
+    .Field-style {
+        font-size: 0.8rem;
+    }
+
+    .step-description {
+        font-size: 0.8rem;
+    }
+}
+/* Base styles for the label */
+.icon-label {
+    font-size: 0.8rem !important;
 }
 
-.icon-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 10px;
-    font-size: 24px; /* Icon size */
-    cursor: pointer;
-    transition: transform 0.2s;
-    width: 100px;
+/* Adjust font size for smaller screens */
+@media (max-width: 768px) {
+    .icon-label {
+        font-size: 0.6rem !important; /* Slightly smaller on medium screens */
+    }
 }
 
-.icon-button.Mui-selected {
-    background-color: #dcd6f7;
-    border-color: #9b4dca;
-    transform: scale(1.1);
-}
 
-.step-description {
-    margin-bottom: 10px;
-    color: #6a2e94;
-    font-weight: bold;
-}
 
 .Field-style {
     margin: 16px 0;
@@ -1081,7 +1131,7 @@ input[type="range"]::-moz-range-thumb {
 
 .toggle-group {
     display: flex;
-    gap: 10px;
+    gap: 3px;
 }
 
 .card {
@@ -1128,13 +1178,15 @@ input[type="range"]::-moz-range-thumb {
 
 
 }
+/* Base styles */
 .card h3 {
     font-size: 24px;
     font-weight: bold;
     color: #6631d0;
     margin-bottom: 10px;
 }
-.card p{
+
+.card p {
     font-size: 18px;
     color: #7a1bc3;
     margin-bottom: 10px;
@@ -1143,6 +1195,33 @@ input[type="range"]::-moz-range-thumb {
     padding: 10px;
     border-radius: 10px;
 }
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .card h3 {
+        font-size: 20px; /* Reduce font size for smaller screens */
+        margin-bottom: 8px;
+    }
+
+    .card p {
+        display: none; /* Hide the paragraph on smaller screens */
+    }
+}
+
+/* Further adjustments for very small screens */
+@media (max-width: 480px) {
+    .card h3 {
+        font-size: 18px; /* Even smaller font */
+        margin-bottom: 6px;
+    }
+
+    .card p {
+        font-size: 14px; /* Smaller font for very small screens */
+        padding: 6px; /* Compact padding */
+        margin-bottom: 6px;
+    }
+}
+
 
 .card:hover {
     transform: translateY(-10px); /* Moves the card up slightly */
@@ -1155,6 +1234,21 @@ h2 {
     font-weight: bold;
     color: #6a2e94;
 }
+
+.modal {
+    position: absolute; /* Positions the modal relative to its container */
+    top: 50%; /* Centers vertically */
+    left: 50%; /* Centers horizontally */
+    transform: translate(-50%, -50%); /* Transforms to perfect center */
+    width: 400px; /* Sets the modal's width */
+    background-color: var(--background-paper, #fff); /* Background color, using CSS variable for theming */
+    border: 2px solid #000; /* Adds a black border */
+    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.2); /* Creates a shadow effect */
+    padding: 16px; /* Adds padding inside the modal */
+    height: 200px; /* Sets the modal's height */
+    border-radius: 8px; /* Rounds the corners */
+}
+
 
 
 
