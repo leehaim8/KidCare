@@ -1054,6 +1054,78 @@ input[type="range"]::-moz-range-thumb {
     gap: 10px;
 }
 
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Align text vertically */
+    align-items: center; /* Align text horizontally */
+    background: black; /* Fallback color */
+    background-image: url('your-image-url-here'); /* Add the image */
+    background-size: cover; /* Ensures the image covers the card */
+    background-repeat: no-repeat; /* Prevents repeating */
+    background-position: center; /* Focus on the middle of the image */
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: white; /* Ensures text is visible over the image */
+    height: 250px; /* Adjust card height */
+    text-align: center;
+    overflow: hidden; /* Prevents content overflow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.swiper {
+    width: 100%;
+    padding: 30px 0;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+}
+
+.cards-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 80px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+
+}
+.card h3 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #6631d0;
+    margin-bottom: 10px;
+}
+.card p{
+    font-size: 18px;
+    color: #7a1bc3;
+    margin-bottom: 10px;
+    font-weight: bold;
+    background-color: #f5e6ff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.card:hover {
+    transform: translateY(-10px); /* Moves the card up slightly */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Adds a deeper shadow */
+    background: #f9f9f9; /* Optional: Slightly change the background color */
+}
+
+h2 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #6a2e94;
+}
+
 
 
 

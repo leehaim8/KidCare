@@ -38,6 +38,7 @@ import PeriodicFeedback from './PeriodicFeedback';
 import ChildInfo from './childInfo';
 import Footer from './Footer';
 import Expert from './Experts';
+import ResourceLibrary from './ResourceLibrary';
 
 const AppContent = () => {
   const location = useLocation();
@@ -57,6 +58,7 @@ const AppContent = () => {
         <Route path="/WeeklyFeedback" element={<ProtectedRoute element={<WeeklyFeedback />} />} />
         <Route path="/childInfo/:id" element={<ProtectedRoute element={<ChildInfo />} />} />
         <Route path="/Experts" element={<ProtectedRoute element={<Expert />} />} />
+        <Route path="/ResourceLibrary" element={<ProtectedRoute element={<ResourceLibrary />} />} />
         <Route path="/PeriodicFeedback" element={<ProtectedRoute element={<PeriodicFeedback />} />} />
       </Routes>
       {shouldShowFooter() && <Footer />}

@@ -26,7 +26,7 @@ const HamburgerMenu = () => {
                         <li><Link to="/HomePage">🏠 HomePage</Link></li>
                         <li><Link to="/WeeklyFeedback">📊 Weekly Feedback</Link></li>
                         <li><Link to="/PeriodicFeedback">🔄 Periodic Feedback</Link></li>
-                        <li><Link to="#">📚 Resource Library</Link></li>
+                        <li><Link to="/ResourceLibrary">📚 Resource Library</Link></li>
                         <li><Link to="/Experts"><FaUserFriends /> External Professional Directory</Link></li>
 
                     </ul>
