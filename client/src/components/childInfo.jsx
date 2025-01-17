@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import { RiDeleteBinLine } from "react-icons/ri";
+import { FiEdit } from "react-icons/fi";
 import Header from './Header';
-import WeeklyFeedbackChildPage from './WeeklyFeedbackChildPage'
+import WeeklyFeedbackChildPage from './WeeklyFeedbackChildPage';
+import EditChildInfo from './EditChildInfo';
 
 ChartJS.register(
     CategoryScale,
@@ -17,11 +20,13 @@ ChartJS.register(
 
 const ChildInfo = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     const pathSegments = location.pathname.split('/');
     const childID = pathSegments[pathSegments.length - 1];
 
     const [childDetails, setChildDetails] = useState(null);
     const [weekFeedback, setWeekFeedback] = useState([]);
+    const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
         const fetchChildDetails = async () => {
@@ -40,6 +45,40 @@ const ChildInfo = () => {
 
         fetchChildDetails();
     }, [childID]);
+
+    const handleDelete = async () => {
+        try {
+            const response = await fetch(`http://localhost:8080/api/children/${childID}`, {
+                method: 'DELETE',
+            });
+            if (!response.ok) {
+                throw new Error('Error deleting child');
+            }
+            navigate("/HomePage");
+        } catch (error) {
+            console.error('Error deleting child:', error);
+        }
+    };
+
+    const handleSaveEdit = async (updatedDetails) => {
+        try {
+            const response = await fetch(`http://localhost:8080/api/children/${childID}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedDetails),
+            });
+            if (!response.ok) {
+                throw new Error('Error updating child details');
+            }
+            const updatedChild = await response.json();
+            setChildDetails(updatedChild);
+            setIsEditing(false);
+        } catch (error) {
+            console.error('Error updating child details:', error);
+        }
+    };
 
     if (!childDetails) {
         return <div>Loading...</div>;
@@ -80,34 +119,41 @@ const ChildInfo = () => {
         <div>
             <Header />
             <div className="child-info-container">
-                <div className="child-info-card">
-                    <div className="child-info-header">
-                        <h2>{childDetails.name}</h2>
-                        <img src={`http://localhost:8080/public/${childDetails.image}`} alt={`${childDetails.name}`} className="child-image" />
-                    </div>
-                    <div className="child-info-details">
-                        <p><strong>Age:</strong> {childDetails.age}</p>
-                        <p><strong>Allergies:</strong> {childDetails.allergies.join(', ')}</p>
-                        <p><strong>Mother's Contact:</strong> {childDetails.contactInfo.mother}</p>
-                        <p><strong>Father's Contact:</strong> {childDetails.contactInfo.father}</p>
-                        <p><strong>Phone:</strong> {childDetails.contactInfo.phone}</p>
-                    </div>
-                </div>
-                <WeeklyFeedbackChildPage weekFeedback={weekFeedback} />
-                <div className="charts-container">
-                    <div className="chart">
-                        <h3>Learning Progress</h3>
-                        <Line data={learningProgressData} />
-                        <div className="chart-date">
+                {isEditing ? (
+                    <EditChildInfo childDetails={childDetails} onSave={handleSaveEdit} onCancel={() => setIsEditing(false)} />
+                ) : (
+                    <>
+                        <div className="child-info-container-div">
+                            <button onClick={() => setIsEditing(true)} className="child-info-container-button"><FiEdit /></button>
+                            <button onClick={handleDelete} className="child-info-container-button"><RiDeleteBinLine /></button>
                         </div>
-                    </div>
-                    <div className="chart">
-                        <h3>Health Rating</h3>
-                        <Line data={healthData} />
-                        <div className="chart-date">
+                        <div className="child-info-card">
+                            <div className="child-info-header">
+                                <h2>{childDetails.name}</h2>
+                                <img src={`http://localhost:8080/public/${childDetails.image}`} alt={`${childDetails.name}`} className="child-image" />
+                            </div>
+                            <div className="child-info-details">
+                                <p><strong>Age:</strong> {childDetails.age}</p>
+                                <p><strong>Birthday:</strong> {childDetails.birthday}</p>
+                                <p><strong>Allergies:</strong> {childDetails.allergies.join(', ')}</p>
+                                <p><strong>Mother's Contact:</strong> {childDetails.contactInfo.mother}</p>
+                                <p><strong>Father's Contact:</strong> {childDetails.contactInfo.father}</p>
+                                <p><strong>Phone:</strong> {childDetails.contactInfo.phone}</p>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                        <WeeklyFeedbackChildPage weekFeedback={weekFeedback} />
+                        <div className="charts-container">
+                            <div className="chart">
+                                <h3>Learning Progress</h3>
+                                <Line data={learningProgressData} />
+                            </div>
+                            <div className="chart">
+                                <h3>Health Rating</h3>
+                                <Line data={healthData} />
+                            </div>
+                        </div>
+                    </>
+                )}
             </div>
         </div>
     );
