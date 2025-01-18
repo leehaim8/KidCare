@@ -1381,55 +1381,55 @@ h2 {
     z-index: 1;
 }
 
-/* Media queries for responsiveness */
+
 @media (max-width: 768px) {
     .note {
-        max-width: 150px; /* Smaller width for tablets */
-        min-width: 120px; /* Adjusted minimum width */
-        font-size: 11px; /* Slightly smaller font size */
-        min-height: 70px; /* Reduce height for tablets */
+        max-width: 150px; 
+        min-width: 120px; 
+        font-size: 11px; 
+        min-height: 70px; 
     }
 }
 
 @media (max-width: 480px) {
     .note {
-        max-width: 120px; /* Smaller width for phones */
-        min-width: 100px; /* Narrower notes for phones */
-        font-size: 10px; /* Smaller font size */
-        min-height: 60px; /* Reduced height for phones */
+        max-width: 120px; 
+        min-width: 100px; 
+        font-size: 10px; 
+        min-height: 60px; 
     }
 
     .input-container input {
-        width: 100%; /* Full width input */
+        width: 100%; 
     }
 }
 
 
 .search-input {
-    width: 80%; /* Takes up 80% of the parent container */
-    max-width: 400px; /* Prevents the input from being too wide */
-    padding: 10px; /* Adds inner padding for a better look */
+    width: 80%; 
+    max-width: 400px; 
+    padding: 10px; 
     margin-top: 20px;
     margin-left: 10px;
-    border: 1px solid #ccc; /* Light gray border */
-    border-radius: 8px; /* Rounded corners */
-    font-size: 16px; /* Comfortable font size */
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    outline: none; /* Removes the blue outline on focus */
-    transition: border-color 0.2s ease, box-shadow 0.2s ease; /* Smooth transition for interactions */
+    border: 1px solid #ccc; 
+    border-radius: 8px; 
+    font-size: 16px; 
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); 
+    outline: none; 
+    transition: border-color 0.2s ease, box-shadow 0.2s ease; 
 }
 
-/* Change border and shadow on focus */
+
 .search-input:focus {
-    border-color: #6631d0; /* Highlighted border color */
-    box-shadow: 0px 4px 8px rgba(102, 49, 208, 0.2); /* Slightly stronger shadow */
+    border-color: #6631d0; 
+    box-shadow: 0px 4px 8px rgba(102, 49, 208, 0.2); 
 }
 
-/* Adjusts for smaller screens */
+
 @media (max-width: 480px) {
     .search-input {
-        width: 90%; /* Takes up more space on small screens */
-        font-size: 14px; /* Slightly smaller font size */
+        width: 90%; 
+        font-size: 14px; 
     }
 }
 
