@@ -694,22 +694,22 @@ input[type="range"]::-moz-range-thumb {
 .range-max,
 .range-value {
     position: absolute;
-    top: -20px; /* Position above the slider */
-    font-size: 14px; /* Text size for labels */
-    color: black; /* Text color */
+    top: -20px; 
+    font-size: 14px; 
+    color: black; 
 }
 
 .range-min {
-    left: 0; /* Align to the left edge */
+    left: 0; 
 }
 
 .range-max {
-    right: 0; /* Align to the right edge */
+    right: 0; 
 }
 
 .range-value {
-    left: 50%; /* Center align */
-    transform: translateX(-50%); /* Adjust for perfect centering */
+    left: 50%; 
+    transform: translateX(-50%); 
     font-weight: bold;
 }
 
@@ -723,11 +723,11 @@ input[type="range"]::-moz-range-thumb {
 
 
 .step-box {
-    padding-bottom: 16px; /* Padding for each step field */
+    padding-bottom: 16px; 
 }
 
 .action-buttons {
-    margin-top: 20px; /* Margin above the buttons */
+    margin-top: 20px; 
     display: flex;
     justify-content: space-between;
 }
@@ -948,14 +948,14 @@ input[type="range"]::-moz-range-thumb {
     background-color: #0056b3;
 }
 
-/* General container styles */
+
 .Periodic-container {
-    margin: 2rem auto; /* Center the form */
-    max-width: 1200px; /* Set a max width for larger screens */
+    margin: 2rem auto; 
+    max-width: 1200px; 
     padding: 1rem;
 }
 
-/* Periodic feedback box styles */
+
 .periodic-box {
     display: flex;
     flex-direction: column;
@@ -963,13 +963,13 @@ input[type="range"]::-moz-range-thumb {
     background-color: #EDE7F6;
     padding: 1.5rem;
     border-radius: 8px;
-    margin: 2rem 1rem; /* Add spacing between boxes */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a slight shadow for better focus */
+    margin: 2rem 1rem; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
-/* Responsive typography */
+
 .periodic-box h6 {
-    font-size: 1.5rem; /* Adjust font size */
+    font-size: 1.5rem;
     margin-bottom: 1rem;
     font-weight: bold;
 }
@@ -980,7 +980,7 @@ input[type="range"]::-moz-range-thumb {
     line-height: 1.4;
 }
 
-/* Field styling */
+
 .Field-style {
     margin: 0.5rem 0 !important;
     font-size: 1rem;
@@ -1007,11 +1007,11 @@ input[type="range"]::-moz-range-thumb {
     color: #6a2e94;
 }
 
-/* Icon buttons for ratings */
+
 .icon-container {
     display: flex;
     justify-content: space-around;
-    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    flex-wrap: wrap; 
     margin: 1.5rem 0;
     gap: 1rem;
 }
@@ -1043,7 +1043,7 @@ input[type="range"]::-moz-range-thumb {
     margin-bottom: 1rem;
 }
 
-/* Responsive adjustments with media queries */
+
 @media (max-width: 768px) {
     .Periodic-container {
         margin: 1rem;
@@ -1056,21 +1056,21 @@ input[type="range"]::-moz-range-thumb {
     }
 
     .icon-container {
-        justify-content: space-between; /* Distribute icons evenly */
+        justify-content: space-between;
     }
 
     .icon-button {
-        width: 80px; /* Adjust button size for smaller screens */
+        width: 80px; 
         padding: 0.5rem;
         font-size: 1.2rem;
     }
 
     .periodic-box h6 {
-        font-size: 1.25rem; /* Reduce heading size */
+        font-size: 1.25rem; 
     }
 
     .Field-style {
-        font-size: 0.9rem; /* Adjust input font size */
+        font-size: 0.9rem; 
     }
 
     .step-description {
@@ -1111,15 +1111,15 @@ input[type="range"]::-moz-range-thumb {
         font-size: 0.8rem;
     }
 }
-/* Base styles for the label */
+
 .icon-label {
     font-size: 0.8rem !important;
 }
 
-/* Adjust font size for smaller screens */
+
 @media (max-width: 768px) {
     .icon-label {
-        font-size: 0.6rem !important; /* Slightly smaller on medium screens */
+        font-size: 0.6rem !important; 
     }
 }
 
@@ -1137,20 +1137,20 @@ input[type="range"]::-moz-range-thumb {
 .card {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Align text vertically */
-    align-items: center; /* Align text horizontally */
-    background: black; /* Fallback color */
-    background-image: url('your-image-url-here'); /* Add the image */
-    background-size: cover; /* Ensures the image covers the card */
-    background-repeat: no-repeat; /* Prevents repeating */
-    background-position: center; /* Focus on the middle of the image */
+    justify-content: center; 
+    align-items: center; 
+    background: black;
+    background-image: url('your-image-url-here'); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center; 
     border-radius: 12px;
     padding: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: white; /* Ensures text is visible over the image */
-    height: 250px; /* Adjust card height */
+    color: white; 
+    height: 250px; 
     text-align: center;
-    overflow: hidden; /* Prevents content overflow */
+    overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     background: #fff;
     margin-top: 10px;
@@ -1178,7 +1178,7 @@ input[type="range"]::-moz-range-thumb {
 
 
 }
-/* Base styles */
+
 .card h3 {
     font-size: 24px;
     font-weight: bold;
@@ -1196,37 +1196,37 @@ input[type="range"]::-moz-range-thumb {
     border-radius: 10px;
 }
 
-/* Responsive adjustments for smaller screens */
+
 @media (max-width: 768px) {
     .card h3 {
-        font-size: 20px; /* Reduce font size for smaller screens */
+        font-size: 20px; 
         margin-bottom: 8px;
     }
 
     .card p {
-        display: none; /* Hide the paragraph on smaller screens */
+        display: none; 
     }
 }
 
-/* Further adjustments for very small screens */
+
 @media (max-width: 480px) {
     .card h3 {
-        font-size: 18px; /* Even smaller font */
+        font-size: 18px; 
         margin-bottom: 6px;
     }
 
     .card p {
-        font-size: 14px; /* Smaller font for very small screens */
-        padding: 6px; /* Compact padding */
+        font-size: 14px; 
+        padding: 6px; 
         margin-bottom: 6px;
     }
 }
 
 
 .card:hover {
-    transform: translateY(-10px); /* Moves the card up slightly */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Adds a deeper shadow */
-    background: #f9f9f9; /* Optional: Slightly change the background color */
+    transform: translateY(-10px); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+    background: #f9f9f9; 
 }
 
 h2 {
@@ -1236,24 +1236,24 @@ h2 {
 }
 
 .modal {
-    position: absolute; /* Positions the modal relative to its container */
-    top: 50%; /* Centers vertically */
-    left: 50%; /* Centers horizontally */
-    transform: translate(-50%, -50%); /* Transforms to perfect center */
-    width: 400px; /* Sets the modal's width */
-    background-color: var(--background-paper, #fff); /* Background color, using CSS variable for theming */
-    border: 2px solid #000; /* Adds a black border */
-    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.2); /* Creates a shadow effect */
-    padding: 16px; /* Adds padding inside the modal */
-    height: 200px; /* Sets the modal's height */
-    border-radius: 8px; /* Rounds the corners */
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    width: 400px; 
+    background-color: var(--background-paper, #fff); 
+    border: 2px solid #000; 
+    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.2); 
+    padding: 16px; 
+    height: 200px; 
+    border-radius: 8px; 
 }
 
-/* Frame for the board */
+
 .board-frame {
-    width: 90%; /* Adjust width to fit smaller screens */
-    max-width: 1200px; /* Set a maximum width for larger screens */
-    height: 60vh; /* Use viewport height for responsiveness */
+    width: 90%; 
+    max-width: 1200px; 
+    height: 60vh; 
     margin-top: 20vh;
     margin-left: auto;
     margin-right: auto;
@@ -1262,38 +1262,38 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #A5846A; /* Corkboard base color */
+    background-color: #A5846A;
     background-image: url("http://localhost:8080/public/cork-board.jpg");
-    background-size: cover; /* Ensures the image covers the area */
-    background-position: center; /* Centers the corkboard image */
+    background-size: cover; 
+    background-position: center; 
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
     overflow: hidden;
 }
 
-/* The draggable area */
+
 .board {
     width: 100%;
     height: 100%;
     position: relative;
     overflow: hidden;
     display: flex;
-    flex-wrap: wrap; /* Allows items to wrap when resized */
+    flex-wrap: wrap; 
 }
 
-/* Input container styles */
+
 .input-container {
     margin-bottom: 10px;
     display: flex;
-    flex-wrap: wrap; /* Allows input and button to wrap */
+    flex-wrap: wrap; 
     gap: 10px;
     justify-content: center;
-    width: 100%; /* Ensures alignment in smaller screens */
+    width: 100%; 
 }
 
 .input-container input {
-    width: 50%; /* Dynamically adjusts width */
+    width: 50%;
     max-width: 300px;
-    min-width: 150px; /* Prevents input from shrinking too much */
+    min-width: 150px;
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -1307,14 +1307,14 @@ h2 {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
-    flex-shrink: 0; /* Prevents button from shrinking */
+    flex-shrink: 0; 
 }
 
 .input-container button:hover {
     background-color: #7a1bc3;
 }
 
-/* Delete button for notes */
+
 .note button {
     display: block;
     margin-top: 10px;
@@ -1331,12 +1331,12 @@ h2 {
     background-color: #e63946;
 }
 
-/* Note styles */
+
 .note {
     padding: 15px;
     width: auto;
     min-width: 150px;
-    max-width: 20%; /* Percentage-based width for responsiveness */
+    max-width: 20%; 
     min-height: 100px;
     border-radius: 8px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
@@ -1356,7 +1356,7 @@ h2 {
     text-align: center;
 }
 
-/* Restrict text to 20 characters per line */
+
 .note p {
     margin: 0;
     line-height: 1.5;
@@ -1366,7 +1366,7 @@ h2 {
     overflow-wrap: anywhere;
 }
 
-/* Pin effect at the top of the note */
+
 .note::before {
     content: "";
     width: 10px;
