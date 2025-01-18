@@ -3,6 +3,8 @@ import Header from "./Header";
 import ChildCard from "./ChildCard";
 import { useNavigate } from "react-router-dom";
 import BirthdayModal from "./BirthdayModel";
+import BoardCommunication from "./boardCommunication";
+
 
 function Home() {
   const [children, setChildren] = useState([]);
@@ -55,6 +57,7 @@ function Home() {
   return (
     <div>
       <Header />
+      <BoardCommunication />
       <div className="children-cards">
         {children.map((child) => (
           <ChildCard key={child.childID} child={child} />
