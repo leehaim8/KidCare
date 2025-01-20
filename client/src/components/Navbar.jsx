@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaHome, FaChartBar, FaClipboardList, FaBook, FaUserFriends, FaCog, FaSignOutAlt } from "react-icons/fa";
+import { FaHome, FaChartBar, FaClipboardList, FaBook, FaUserFriends, FaCog, FaSignOutAlt,FaSearch } from "react-icons/fa";
 
 const HamburgerMenu = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -24,10 +24,11 @@ const HamburgerMenu = () => {
                 <nav className="menu-nav">
                     <ul className="top-links">
                         <li><Link to="/HomePage">🏠 HomePage</Link></li>
+                        <li><Link to="/attendence"><FaUserFriends /> Children's Attendance</Link></li>
                         <li><Link to="/WeeklyFeedback">📊 Weekly Feedback</Link></li>
                         <li><Link to="/PeriodicFeedback">🔄 Periodic Feedback</Link></li>
                         <li><Link to="/ResourceLibrary">📚 Resource Library</Link></li>
-                        <li><Link to="/Experts"><FaUserFriends /> External Professional Directory</Link></li>
+                        <li><Link to="/Experts"><FaSearch /> External Professional Directory</Link></li>
 
                     </ul>
                     <ul className="bottom-links">

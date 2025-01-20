@@ -274,18 +274,8 @@ form button:hover {
     margin-top: 20px;
     padding: 20px;
     margin-bottom: 80px;
-}
-
-.children-cards {
-    display: flex;
     gap: 20px;
-    flex-wrap: wrap;
 }
-
-.child-card-link {
-    text-decoration: none;
-}
-
 .child-card {
     width: 200px;
     height: 300px;
@@ -295,9 +285,10 @@ form button:hover {
     text-align: center;
     padding: 10px;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.2s, width 0.3s ease, height 0.3s ease;
 }
 
+/* Image inside the card */
 .child-card img {
     width: 100%;
     height: 190px;
@@ -307,22 +298,101 @@ form button:hover {
     border-radius: 10px;
 }
 
+/* Card title */
 .child-card h2 {
     margin-top: 10px;
     font-size: 20px;
     color: #333;
     text-align: center;
     display: block;
-    text-decoration-line: none;
     font-weight: bold;
-    box-shadow: none;
 }
 
+/* Hover effect */
 .child-card:hover {
     transform: scale(1.05);
 }
 
+/* Responsive styles */
+@media (max-width: 768px) {
+    .child-card {
+        width: 150px; /* Smaller width for tablets */
+        height: 250px; /* Adjust height */
+    }
+
+    .child-card img {
+        height: 150px; /* Reduce image height */
+    }
+
+    .child-card h2 {
+        font-size: 18px; /* Smaller font size for title */
+    }
+}
+
+@media (max-width: 480px) {
+    .child-card {
+        width: 120px; /* Smaller width for mobile devices */
+        height: 200px; /* Adjust height */
+    }
+
+    .child-card img {
+        height: 120px; /* Reduce image height further */
+    }
+
+    .child-card h2 {
+        font-size: 16px; /* Smaller font size for title */
+    }
+}
+
+/* Base button styles */
+.responsive-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #6631d0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover effect */
+.responsive-button:hover {
+    background-color: #7a1bc3;
+    transform: scale(1.05); /* Slightly enlarges the button on hover */
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+    .responsive-button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .responsive-button {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+}
+
+.child-card {
+    width: 100%;
+    height: 100%;
+    border: 3px solid var(--header-color); /* Default border size */
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); /* Default shadow */
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+    transition: all 0.3s ease; /* Smooth transitions */
+}
+
+
 .add-child {
+    width: 200px;
+    height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1432,6 +1502,138 @@ h2 {
         font-size: 14px; 
     }
 }
+
+.attendence{
+    margin-top: 100px;
+}
+.search-container {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-input .attendance-search {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.search-input:focus {
+    border-color: #6631d0;
+}
+
+
+
+.attendance-page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+.present-area {
+    width: 100%;
+    max-width: 1200px;
+    background-color: white;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: sticky; /* Stick to the viewport */
+    bottom: 80px; /* Distance from the bottom of the viewport */
+    z-index: 10; /* Ensure it's above other content */
+}
+.present-area h2 {
+    font-size: 20px; /* Smaller font size */
+}
+
+
+/* Add bottom padding to the content area */
+.attendance-container {
+    padding-bottom: 100px; /* Enough space to accommodate the footer */
+}
+
+.attendence-h1{
+    margin-top: 100px;
+}
+
+/* Present Children Container */
+.present-children {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Adjusted for better layout */
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* Submit Button */
+.submit-button {
+    padding: 10px 20px;
+    background-color: #6631d0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #7a1bc3;
+}
+
+/* Default child card styles */
+
+/* Smaller shadow and border in the Present cube */
+.present-children .child-card {
+    border: 2px solid var(--header-color); /* Smaller border */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Smaller shadow */
+    border-radius: 8px; /* Adjusted border radius */
+    transition: all 0.3s ease; /* Smooth resizing and shadow transition */
+}
+
+/* Image inside the card */
+.child-card img {
+    width: 100%;
+    height: 190px;
+    background-size: cover;
+    background-position: center;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: height 0.3s ease; /* Smooth transition for image height */
+}
+
+/* Smaller image in the Present cube */
+.present-children .child-card img {
+    height: 60px; /* Reduced height for smaller cards */
+}
+
+/* Card title styling */
+.child-card h2 {
+    margin-top: 10px;
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    transition: font-size 0.3s ease; /* Smooth font size transition */
+}
+
+/* Smaller title in the Present cube */
+.present-children .child-card h2 {
+    font-size: 10px; /* Smaller font size */
+}
+
+
+
+
 
 
 

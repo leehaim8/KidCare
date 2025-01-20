@@ -39,6 +39,7 @@ import ChildInfo from './childInfo';
 import Footer from './Footer';
 import Expert from './Experts';
 import ResourceLibrary from './ResourceLibrary';
+import Attendence from './attendence';
 
 const AppContent = () => {
   const location = useLocation();
@@ -54,6 +55,7 @@ const AppContent = () => {
         <Route path="/Login" element={<div className="container"><Login /></div>} />
         <Route path="/Register" element={<div className="container"><Register /></div>} />
         <Route path="/HomePage" element={<ProtectedRoute element={<HomePage />} />} />
+        <Route path="/attendence" element={<ProtectedRoute element={<Attendence />} />} />
         <Route path="/addChild" element={<ProtectedRoute element={<AddChild />} />} />
         <Route path="/WeeklyFeedback" element={<ProtectedRoute element={<WeeklyFeedback />} />} />
         <Route path="/childInfo/:id" element={<ProtectedRoute element={<ChildInfo />} />} />
