@@ -60,16 +60,41 @@ function Attendance() {
   const filteredChildren = remainingChildren.filter((child) =>
     child.name.toLowerCase().includes(searchTerm.toLowerCase()) // Filter by search term
   );
-
-  const handleSubmitAttendance = () => {
-    const attendance = presentChildren.map((child) => ({
+  const handleSubmitAttendance = async () => {
+    const todayDate = new Date().toISOString().split("T")[0]; // Get today's date in ISO format (YYYY-MM-DD)
+  
+    // Prepare attendance data
+    const attendance = children.map((child) => ({
       name: child.name,
-      status: "present",
+      status: presentChildren.some((present) => present.name === child.name)
+        ? "present"
+        : "not present",
+      date: todayDate,
     }));
-
-    console.log("Attendance Submitted:", attendance);
-    alert("Attendance has been submitted!");
+  
+    try {
+      // Send data to the backend
+      const response = await fetch(`http://localhost:8080/api/attendance/${userId}/add`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ attendance }), // Send attendance array to backend
+      });
+  
+      if (response.ok) {
+        alert("Attendance has been submitted successfully!");
+      } else {
+        const errorData = await response.json();
+        alert(`Failed to submit attendance: ${errorData.message}`);
+      }
+    } catch (error) {
+      console.error("Error submitting attendance:", error);
+      alert("An error occurred while submitting attendance. Please try again.");
+    }
   };
+  
+  
 
   return (
     <div className="attendance-page">

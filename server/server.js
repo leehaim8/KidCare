@@ -10,6 +10,8 @@ const { weekFeedBackRouter } = require('./routers/weekFeedBackRouter');
 const{ periodicFeedbackRouter } = require('./routers/periodicFeedbackRouter');
 const { expertRouter } = require('./routers/expertRouter');
 const resourcesRouter = require('./routers/resourcesRouter');
+const attendenceRouter = require('./routers/attendenceRouter');
+
 
 app.use(cors({
     origin: 'http://localhost:3000',
@@ -28,6 +30,7 @@ app.use('/api/weekFeedBack', weekFeedBackRouter);
 app.use('/api/periodicFeedback', periodicFeedbackRouter);
 app.use('/api/expert', expertRouter);
 app.use('/api/resources', resourcesRouter);
+app.use('/api/attendance', attendenceRouter);
 
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
