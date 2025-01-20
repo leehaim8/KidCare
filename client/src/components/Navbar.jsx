@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaHome, FaChartBar, FaClipboardList, FaBook, FaUserFriends, FaCog, FaSignOutAlt,FaSearch } from "react-icons/fa";
+import { FaUserFriends, FaCog, FaSignOutAlt,FaSearch } from "react-icons/fa";
 
 const HamburgerMenu = () => {
     const [isOpen, setIsOpen] = useState(false);
