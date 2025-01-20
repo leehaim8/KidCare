@@ -80,6 +80,31 @@ const attendenceController = {
       res.status(500).json({ message: error.message });
     }
   },
+
+  // Get attendance history for a specific date
+  async getAttendanceHistory(req, res) {
+    const { userID } = req.params;
+    const { date } = req.query;
+
+    if (!userID || !date) {
+      return res.status(400).json({ message: "User ID and date are required" });
+    }
+
+    try {
+      const attendanceRecords = await Attendance.find({
+        userID: userID,
+        date: date,
+      });
+
+      if (!attendanceRecords.length) {
+        return res.status(404).json({ message: "No attendance records found for the selected date" });
+      }
+
+      res.status(200).json(attendanceRecords);
+    } catch (error) {
+      res.status(500).json({ message: "Error fetching attendance history", error: error.message });
+    }
+  },
 };
 
 module.exports = { attendenceController };
