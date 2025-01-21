@@ -4,6 +4,7 @@
     --background-color: #f3eafc;
     --header-color: #dcbff6;
     --form-color: #9b4dca;
+    --card--color: #cc98e6;
 }
 
 * {
@@ -109,7 +110,6 @@ form button:hover {
     padding: 20px;
     background-color: var(--header-color);
     border-bottom: 2px solid #ccc;
-    border-radius: 10px 10px 0 0;
     height: 100px;
     position: fixed;
     top: 0;
@@ -140,7 +140,7 @@ form button:hover {
     color: black;
     transition: left 0.3s ease-in-out;
     box-shadow: none;
-    z-index: 999;
+    z-index: 1000;
 }
 
 .hamburger-menu.open {
@@ -252,14 +252,19 @@ form button:hover {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    margin-top: 20px;
+    margin-top: 120px;
     padding: 20px;
     margin-bottom: 80px;
     gap: 20px;
 }
+
+.child-card-link {
+    text-decoration: none;
+}
+
 .child-card {
     width: 200px;
-    height: 300px;
+    height: 250px;
     border: 3px solid var(--header-color);
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -286,7 +291,9 @@ form button:hover {
     color: #333;
     text-align: center;
     display: block;
+    text-decoration-line: none;
     font-weight: bold;
+    box-shadow: none;
 }
 
 /* Hover effect */
@@ -398,7 +405,7 @@ form button:hover {
 .add-child-container {
     margin: 0 auto 100px auto;
     padding: 20px;
-    max-width: 600px;
+    max-width: 90%;
     background-color: #f5e6ff;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -419,16 +426,32 @@ form button:hover {
     align-items: stretch;
 }
 
+.add-child-form fieldset {
+    padding: 20px;
+    color: var(--form-color);
+    border: 2px solid var(--form-color);
+    border-width: 2px;
+}
+
+
+.add-child-form legend {
+    font-size: 18px;
+    color: var(--form-color);
+    font-weight: bold;
+}
+
 .add-child-div {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
+    width: 500px;
 }
 
 label {
     font-size: 18px;
     color: #6a2e94;
     font-weight: bold;
+    width: 150px;
 }
 
 input[type="text"],
@@ -441,6 +464,7 @@ select {
     border: 2px solid var(--form-color);
     border-radius: 10px;
     transition: all 0.3s ease;
+    box-sizing: border-box;
 }
 
 input[type="checkbox"] {
@@ -491,24 +515,38 @@ button[type="submit"]:hover {
     width: 250px;
     margin-left: 75px;
 }
-
 .child-allergies {
-    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+.child-allergies-div {
+    display: flex;
+    flex-direction: row;
+    max-width: 430px;
+    margin-left: 40px;
 }
 
 .child-allergies-label {
     display: inline-block;
     font-size: 16px;
-    margin-bottom: 10px;
+    margin-top: 10px;
     color: #6a2e94;
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .child-allergies-checkboxes {
     display: flex;
-    gap: 15px;
     align-items: center;
     justify-content: flex-start;
+}
+
+input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--form-color);
 }
 
 .breadcrumbs-container {
@@ -637,6 +675,10 @@ input[type="range"]::-moz-range-thumb {
     cursor: pointer;
 }
 
+input[type="date"] {
+    text-transform: none;
+}
+
 .footer {
     display: flex;
     justify-content: space-around;
@@ -647,7 +689,7 @@ input[type="range"]::-moz-range-thumb {
     bottom: 0;
     width: 100%;
     box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
+    z-index: 999;
 }
 
 .footer-link {
@@ -666,6 +708,7 @@ input[type="range"]::-moz-range-thumb {
 
 .footer-icon {
     font-size: 30px;
+    color: var(--form-color);
 }
 
 .child-info-container {
@@ -702,7 +745,7 @@ input[type="range"]::-moz-range-thumb {
     width: 100%;
     max-width: 600px;
     padding: 20px;
-    background-color: var(--form-color);
+    background-color: var(--card--color);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
@@ -735,6 +778,7 @@ input[type="range"]::-moz-range-thumb {
     display: flex;
     justify-content: space-between;
     margin-top: 40px;
+    margin-bottom: 100px;
 }
 
 .chart {
@@ -795,12 +839,12 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .weekly-feedback-container {
-    width: 600px;
+    width: 100%;
     margin-top: 20px;
     padding: 20px;
     background-color: var(--card--color);
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .feedback-card {
@@ -848,11 +892,12 @@ input[type="range"]::-moz-range-thumb {
     cursor: pointer;
     margin-bottom: 10PX;
     margin-top: 5px;
+    max-width: 100px;
 }
 
 .send-message-btn:hover,
 .fill-feedback-btn:hover {
-    background-color: #45a049;
+    background-color: var(--header-color);
 }
 
 .card-header h4 {
@@ -928,7 +973,7 @@ input[type="range"]::-moz-range-thumb {
     padding: 20px;
     text-align: center;
     transition: transform 0.2s;
-    width: 70%;
+    width: 90%;
 }
 
 .expert-card:hover {
@@ -1010,10 +1055,40 @@ input[type="range"]::-moz-range-thumb {
 }
 
 
+.edit-child-details h3 {
+    font-size: 36px;
+    color: var(--form-color);
+    margin-bottom: 20px;
+}
 .Periodic-container {
     margin: 2rem auto; 
     max-width: 1200px; 
     padding: 1rem;
+}
+
+.edit-child-details .edit-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.edit-child-details {
+    margin-bottom: 80px;
+}
+
+.edit-button button {
+    background-color: var(--form-color);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10PX;
+    margin-top: 5px;
 }
 
 
