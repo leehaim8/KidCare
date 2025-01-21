@@ -34,25 +34,6 @@ body {
     align-content: center;
 }
 
-/* form {
-    position: relative;
-}
-
-form input {
-    border: 2px solid gray;
-    background-color: white;
-    width: 250px;
-    border-radius: 3px;
-    font-family: "Source Sans Pro", sans-serif;
-    padding: 10px 15px;
-    margin: 0 auto 10px auto;
-    display: block;
-    text-align: center;
-    font-size: 18px;
-    color: black;
-    font-weight: 300;
-} */
-
 form {
     position: relative;
 }
@@ -424,7 +405,7 @@ form button:hover {
     text-align: center;
 }
 
-h1 {
+.add-child-container h1 {
     font-family: 'Lobster', cursive;
     font-size: 36px;
     color: var(--form-color);
@@ -469,6 +450,17 @@ input[type="checkbox"] {
 input[type="checkbox"]:checked {
     background-color: var(--form-color);
 }
+
+input[type="date"]::placeholder {
+    text-align: left;
+    direction: ltr;
+}
+
+input[type="date"] {
+    text-align: left;
+    direction: ltr;
+}
+
 
 input[type="text"]:focus,
 input[type="number"]:focus,
@@ -915,7 +907,6 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .header h1 {
-    font-family: 'Lobster', cursive;
     font-size: 36px;
     color: var(--form-color);
 }
@@ -1673,19 +1664,9 @@ h2 {
   .history-btn {
     height: 100%; /* Match the button height to the search input */
   }
-  
-  
 
-
-
-
-
-
-
-  
-
-
-
-
-
-
+  .header h1 {
+    font-family: 'Lobster', cursive;
+    font-size: 36px;
+    color: var(--form-color);
+}

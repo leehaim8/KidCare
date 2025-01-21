@@ -27,7 +27,6 @@ const ChildInfo = () => {
     const [childDetails, setChildDetails] = useState(null);
     const [weekFeedback, setWeekFeedback] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
-
     useEffect(() => {
         const fetchChildDetails = async () => {
             try {
@@ -73,7 +72,7 @@ const ChildInfo = () => {
                 throw new Error('Error updating child details');
             }
             const updatedChild = await response.json();
-            setChildDetails(updatedChild);
+            setChildDetails({ ...updatedChild.child });
             setIsEditing(false);
         } catch (error) {
             console.error('Error updating child details:', error);
@@ -135,10 +134,21 @@ const ChildInfo = () => {
                             <div className="child-info-details">
                                 <p><strong>Age:</strong> {childDetails.age}</p>
                                 <p><strong>Birthday:</strong> {childDetails.birthday}</p>
-                                <p><strong>Allergies:</strong> {childDetails.allergies.join(', ')}</p>
-                                <p><strong>Mother's Contact:</strong> {childDetails.contactInfo.mother}</p>
-                                <p><strong>Father's Contact:</strong> {childDetails.contactInfo.father}</p>
-                                <p><strong>Phone:</strong> {childDetails.contactInfo.phone}</p>
+                                <p><strong>Allergies:</strong>
+                                    {childDetails && Array.isArray(childDetails.allergies)
+                                        ? childDetails.allergies.join(', ')
+                                        : 'No allergies available'}
+                                </p>
+                                <p><strong>Mother:</strong>
+                                    {childDetails.contactInfo.mother}
+                                </p>
+
+                                <p><strong>Father's Contact:</strong>
+                                    {childDetails.contactInfo.father}
+                                </p>
+                                <p><strong>Phone:</strong>
+                                    {childDetails.contactInfo.phone}
+                                </p>
                             </div>
                         </div>
                         <WeeklyFeedbackChildPage weekFeedback={weekFeedback} />
