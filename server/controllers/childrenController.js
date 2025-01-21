@@ -60,6 +60,7 @@ const childrenController = {
         try {
             const childDetails = await Children.findOne({ childID });
             const weekFeedback = await weekFeedBackModel.find({ name: childDetails.name });
+
             if (!childDetails) {
                 return res.status(404).json({ message: 'Child not found' });
             }
@@ -111,28 +112,22 @@ const childrenController = {
     },
     async updateChildren(req, res) {
         const { childID } = req.params;
-        const updateData = req.body;
-
         if (!childID) {
-            return res.status(400).json({ message: "Child ID is required" });
-        }
-
-        if (!updateData) {
-            return res.status(400).json({ message: "One of the filed are missing!" });
+            return res.status(400).json({ message: "child ID is required" });
         }
 
         try {
-            const updatedChild = await Children.findOneAndUpdate({ childID }, updateData, { new: true });
-
-            if (!updatedChild) {
+            const deleteUser = await Children.findOneAndDelete({ childID });
+            if (!deleteUser) {
                 return res.status(404).json({ message: "Child not found" });
             }
 
-            res.status(200).json({ message: "Child updated successfully", child: updatedChild });
+            res.status(200).json({ message: "Child deleted successfully" });
         } catch (error) {
             res.status(500).json({ message: "Internal Server Error", error: error.message });
         }
     }
+
 };
 
 module.exports = { childrenController };
