@@ -230,10 +230,10 @@ form button:hover {
     background-image: url("../image/logo.jpg");
     background-size: cover;
     background-position: center;
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-    margin-left: 35px;
+    margin-left: 40px;
 }
 
 .header-container header {
@@ -243,16 +243,16 @@ form button:hover {
 }
 
 .header-container img {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
 }
 
 .children-cards {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    margin-top: 120px;
+    justify-content: center;
+    margin-top: 20px;
     padding: 20px;
     margin-bottom: 80px;
     gap: 20px;
@@ -335,6 +335,7 @@ form button:hover {
 /* Base button styles */
 .responsive-button {
     padding: 10px 20px;
+    margin-top: 8px;
     font-size: 16px;
     background-color: #6631d0;
     color: white;
@@ -356,6 +357,7 @@ form button:hover {
     .responsive-button {
         padding: 8px 16px;
         font-size: 14px;
+        margin-top: 8px;
     }
 }
 
@@ -363,6 +365,7 @@ form button:hover {
     .responsive-button {
         padding: 5px 10px;
         font-size: 12px;
+        margin-top: 8px;
     }
 }
 

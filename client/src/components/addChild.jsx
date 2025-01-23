@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Input from "./Input";
-import Breadcrumbs from "./Breadcrumbs";
 
 const allergiesList = ["Peanuts", "Milk", "Fish", "Eggs", "Soy"];
 
@@ -113,7 +112,6 @@ function AddChild() {
     return (
         <div className="add-child-page">
             <Header />
-            <Breadcrumbs />
             <div className="add-child-container">
                 <h1>Add a Child</h1>
                 <form className="add-child-form" onSubmit={handleRegister}>

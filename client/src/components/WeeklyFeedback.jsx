@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Input from "./Input";
-import Breadcrumbs from "./Breadcrumbs";
 
 function WeeklyFeedback() {
     const [formData, setFormData] = useState({
@@ -111,7 +110,6 @@ function WeeklyFeedback() {
     return (
         <div>
             <Header />
-            <Breadcrumbs />
             <div className="add-child-container">
                 <h1>Weekly Feedback</h1>
                 <form className="add-child-week-form" onSubmit={handleSubmit}>

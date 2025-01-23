@@ -45,15 +45,15 @@ const AppContent = () => {
   const location = useLocation();
 
   const shouldShowFooter = () => {
-    return !['/', '/Login', '/Register'].includes(location.pathname);
+    return !['/', '/login', '/register'].includes(location.pathname);
   };
 
   return (
     <div className="app-container">
       <Routes>
         <Route path='/' element={<div className="container"><Login /></div>} />
-        <Route path="/Login" element={<div className="container"><Login /></div>} />
-        <Route path="/Register" element={<div className="container"><Register /></div>} />
+        <Route path="/login" element={<div className="container"><Login /></div>} />
+        <Route path="/register" element={<div className="container"><Register /></div>} />
         <Route path="/HomePage" element={<ProtectedRoute element={<HomePage />} />} />
         <Route path="/attendence" element={<ProtectedRoute element={<Attendence />} />} />
         <Route path="/addChild" element={<ProtectedRoute element={<AddChild />} />} />

@@ -22,7 +22,6 @@ import {
 import { Formik, Field, Form } from "formik";
 import { CheckboxWithLabel, TextField } from "formik-material-ui";
 import Header from "./Header";
-import Breadcrumbs from "./Breadcrumbs";
 import { object, string, number, boolean } from "yup";
 import PropTypes from "prop-types";
 import { Navigate } from "react-router-dom";
@@ -120,7 +119,6 @@ export default function PeriodicFeedback() {
     return (
         <div className="Periodic-container">
             <Header />
-            <Breadcrumbs />
             <Card>
                 <CardHeader title="Periodic Feedback" />
                 <CardContent>
