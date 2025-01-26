@@ -785,43 +785,75 @@ export function FormikStepper({ children, ...props }) {
     const [step, setStep] = useState(0);
     const currentChild = childrenArray[step];
     const isLastStep = () => step === childrenArray.length - 1;
-
+  
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    };
+  
     return (
-        <Formik {...props} validationSchema={currentChild.props.validationSchema} onSubmit={async (values, helpers) => {
-            if (isLastStep()) {
-                await props.onSubmit(values, helpers);
-            } else {
-                setStep((s) => s + 1);
-                helpers.setTouched({});
-            }
-            helpers.setSubmitting(false);
-        }}>
-            {({ isSubmitting }) => (
-                <Form autoComplete="off">
-                    <Stepper activeStep={step} alternativeLabel>
-                        {childrenArray.map((child, index) => (
-                            <Step key={index}>
-                                <StepLabel>{child.props.label}</StepLabel>
-                            </Step>
-                        ))}
-                    </Stepper>
-                    {currentChild}
-                    <Grid container justifyContent="space-between" style={{ marginTop: "20px" }}>
-                        <Grid item>
-                            {step > 0 && (
-                                <Button type="button" variant="contained" color="secondary" onClick={() => setStep((s) => s - 1)}>
-                                    Back
-                                </Button>
-                            )}
-                        </Grid>
-                        <Grid item>
-                            <Button variant="contained" color="primary" type="submit" startIcon={isSubmitting ? <CircularProgress size="1rem" /> : null}>
-                                {isLastStep() ? "Submit" : "Next"}
-                            </Button>
-                        </Grid>
-                    </Grid>
-                </Form>
-            )}
-        </Formik>
+      <Formik
+        {...props}
+        validationSchema={currentChild.props.validationSchema}
+        onSubmit={async (values, helpers) => {
+          if (isLastStep()) {
+            await props.onSubmit(values, helpers);
+          } else {
+            setStep((s) => s + 1);
+            helpers.setTouched({});
+            scrollToTop(); // Scroll to the top of the page after moving to the next step
+          }
+          helpers.setSubmitting(false);
+        }}
+      >
+        {({ isSubmitting }) => (
+          <Form autoComplete="off">
+            <Stepper activeStep={step} alternativeLabel>
+              {childrenArray.map((child, index) => (
+                <Step key={index}>
+                  <StepLabel>{child.props.label}</StepLabel>
+                </Step>
+              ))}
+            </Stepper>
+            {currentChild}
+            <Grid
+              container
+              justifyContent="space-between"
+              style={{ marginTop: "20px" }}
+            >
+              <Grid item>
+                {step > 0 && (
+                  <Button
+                    type="button"
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => {
+                      setStep((s) => s - 1);
+                      scrollToTop(); // Scroll to the top of the page after going back a step
+                    }}
+                  >
+                    Back
+                  </Button>
+                )}
+              </Grid>
+              <Grid item>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  startIcon={
+                    isSubmitting ? <CircularProgress size="1rem" /> : null
+                  }
+                >
+                  {isLastStep() ? "Submit" : "Next"}
+                </Button>
+              </Grid>
+            </Grid>
+          </Form>
+        )}
+      </Formik>
     );
-}
+  }
+  
