@@ -461,13 +461,10 @@ input[type="text"],
 input[type="number"],
 input[type="tel"],
 select {
-    padding: 10px;
     font-size: 14px;
     width: 100%;
-    border: 2px solid var(--form-color);
     border-radius: 10px;
     transition: all 0.3s ease;
-    box-sizing: border-box;
 }
 
 input[type="checkbox"] {
@@ -1064,7 +1061,7 @@ input[type="date"] {
     margin-bottom: 20px;
 }
 .Periodic-container {
-    margin: 2rem auto; 
+    margin: 6rem auto; 
     max-width: 1200px; 
     padding: 1rem;
 }
@@ -1392,7 +1389,7 @@ h2 {
 .board-frame {
     width: 90%; 
     max-width: 1200px; 
-    height: 60vh; 
+    height: 40vh; 
     margin-top: 20vh;
     margin-left: auto;
     margin-right: auto;
@@ -1630,8 +1627,12 @@ h2 {
     padding-bottom: 100px; /* Enough space to accommodate the footer */
 }
 
-.attendence-h1{
+.attendance-h1{
     margin-top: 100px;
+    margin-bottom: 20px;
+    font-family: 'Lobster', cursive;
+    font-size: 36px;
+    color: #6a2e94;
 }
 
 /* Present Children Container */
@@ -1748,3 +1749,29 @@ h2 {
     font-size: 36px;
     color: var(--form-color);
 }
+
+.weekly-feedback-container-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 130px 0;
+  }
+  
+  .weekly-feedback-card {
+    padding: 24px;
+    width: 90%;
+    max-width: 800px;
+  }
+  
+  .weekly-feedback-title {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  
+  .range-slider-container {
+    margin-top: 8px;
+  }
+  
+  .week-submit-button {
+    text-align: center;
+  }

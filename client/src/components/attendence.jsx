@@ -112,7 +112,7 @@ function Attendance() {
   return (
     <div className="attendance-page">
       <Header />
-      <h1 className="attendence-h1">Child Attendance</h1>
+      <h1 className="attendance-h1">Child Attendance</h1>
 
       {/* Search Input */}
       <div className="search-bar-container">
