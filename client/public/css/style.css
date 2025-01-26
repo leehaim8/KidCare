@@ -1758,3 +1758,29 @@ h2 {
   .week-submit-button {
     text-align: center;
   }
+
+  /* HamburgerMenu.css */
+.drawer-container {
+    width: 250px;
+  }
+  
+  .drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+  }
+  
+  .menu-link {
+    color: #6a89cc; /* Slate Gray with Blue Tint */
+    text-decoration: none;
+  }
+  
+  .menu-link:hover {
+    color: #4a69bd; /* Slightly darker blue for hover */
+  }
+  
+  .menu-divider {
+    margin: 8px 0;
+  }
+  
