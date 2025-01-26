@@ -1,187 +1,277 @@
 import React, { useState } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import {
+  Box,
+  TextField,
+  Button,
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+  MenuItem,
+  Typography,
+  Card,
+  Grid,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
-import Input from "./Input";
 
 const allergiesList = ["Peanuts", "Milk", "Fish", "Eggs", "Soy"];
 
-function AddChild() {
-    const [formData, setFormData] = useState({
-        name: "",
-        birthday: "",
-        age: "",
-        allergies: [],
-        motherName: "",
-        fatherName: "",
-        phone: "",
-        gender: ""
-    });
+const AddChild = () => {
+  const userId = localStorage.getItem("token");
+  const navigate = useNavigate();
 
-    const [errors, setErrors] = useState({
-        name: "",
-        age: "",
-        phone: "",
-        motherName: "",
-        fatherName: "",
-        gender: ""
-    });
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      birthday: "",
+      age: "",
+      allergies: [],
+      moreAllergies: "", // Added for custom allergies
+      motherName: "",
+      fatherName: "",
+      phone: "",
+      gender: "",
+    },
+    validationSchema: Yup.object({
+      name: Yup.string()
+        .min(2, "Name must be at least 2 characters")
+        .required("Child's name is required"),
+      birthday: Yup.date().required("Child's birthday is required"),
+      age: Yup.number()
+        .positive("Age must be a positive number")
+        .required("Child's age is required"),
+      motherName: Yup.string().required("Mother's name is required"),
+      fatherName: Yup.string().required("Father's name is required"),
+      phone: Yup.string()
+        .matches(/^\d{10}$/, "Phone number must be 10 digits")
+        .required("Phone number is required"),
+      gender: Yup.string().required("Please select a gender"),
+    }),
+    onSubmit: async (values, { resetForm }) => {
+      try {
+        const response = await fetch(
+          `http://localhost:8080/api/children/${userId}/addChild`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(values),
+          }
+        );
 
-    const navigate = useNavigate();
-
-    const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
-
-        if (type === "checkbox") {
-            setFormData((prevData) => {
-                if (checked) {
-                    return {
-                        ...prevData,
-                        allergies: [...prevData.allergies, value]
-                    };
-                } else {
-                    return {
-                        ...prevData,
-                        allergies: prevData.allergies.filter((allergy) => allergy !== value)
-                    };
-                }
-            });
+        if (response.ok) {
+          alert("Child added successfully!");
+          resetForm();
+          navigate("/HomePage"); // Navigate to HomePage on success
         } else {
-            setFormData((prevData) => ({
-                ...prevData,
-                [name]: value
-            }));
+          const errorData = await response.json();
+          alert(`Failed to add child: ${errorData.message}`);
         }
-    };
+      } catch (error) {
+        console.error("Error adding child:", error);
+        alert("An error occurred. Please try again.");
+      }
+    },
+  });
 
-    const handleRegister = async (e) => {
-        e.preventDefault();
+  const handleAllergyChange = (event) => {
+    const { value, checked } = event.target;
+    const { allergies } = formik.values;
+    if (checked) {
+      formik.setFieldValue("allergies", [...allergies, value]);
+    } else {
+      formik.setFieldValue(
+        "allergies",
+        allergies.filter((allergy) => allergy !== value)
+      );
+    }
+  };
 
-        let formErrors = {};
+  return (
+    <div className="add-child-page">
+      <Header />
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        sx={{ margin: "130px 0" }}
+      >
+        <Card sx={{ padding: 4, width: "90%", maxWidth: 800 }}>
+          <Typography variant="h4" align="center" gutterBottom>
+            Add a Child
+          </Typography>
+          <form onSubmit={formik.handleSubmit}>
+            <Grid container spacing={3}>
+              {/* Child's Name */}
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Child's Name"
+                  name="name"
+                  value={formik.values.name}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={formik.touched.name && Boolean(formik.errors.name)}
+                  helperText={formik.touched.name && formik.errors.name}
+                />
+              </Grid>
 
-        if (!formData.name || formData.name.length < 2) {
-            formErrors.name = "Please enter a valid child name (at least 2 characters).";
-        }
+              {/* Birthday */}
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  type="date"
+                  label="Birthday"
+                  name="birthday"
+                  value={formik.values.birthday}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  InputLabelProps={{ shrink: true }}
+                  error={
+                    formik.touched.birthday && Boolean(formik.errors.birthday)
+                  }
+                  helperText={formik.touched.birthday && formik.errors.birthday}
+                />
+              </Grid>
 
-        if (!formData.age || formData.age <= 0) {
-            formErrors.age = "Please enter a valid age (must be a positive number).";
-        }
+              {/* Age */}
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  type="number"
+                  label="Child's Age"
+                  name="age"
+                  value={formik.values.age}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={formik.touched.age && Boolean(formik.errors.age)}
+                  helperText={formik.touched.age && formik.errors.age}
+                />
+              </Grid>
 
-        if (!formData.phone || !/^\d{10}$/.test(formData.phone)) {
-            formErrors.phone = "Please enter a valid phone number (10 digits).";
-        }
+              {/* Gender */}
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  select
+                  label="Gender"
+                  name="gender"
+                  value={formik.values.gender}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={formik.touched.gender && Boolean(formik.errors.gender)}
+                  helperText={formik.touched.gender && formik.errors.gender}
+                >
+                  <MenuItem value="">Select Gender</MenuItem>
+                  <MenuItem value="Male">Male</MenuItem>
+                  <MenuItem value="Female">Female</MenuItem>
+                </TextField>
+              </Grid>
 
-        if (!formData.motherName) {
-            formErrors.motherName = "Please enter the mother's name.";
-        }
+              {/* Allergies */}
+              <Grid item xs={12}>
+                <FormControl component="fieldset" fullWidth>
+                  <Typography variant="subtitle1" gutterBottom>
+                    Allergies:
+                  </Typography>
+                  <FormGroup row>
+                    {allergiesList.map((allergy) => (
+                      <FormControlLabel
+                        key={allergy}
+                        control={
+                          <Checkbox
+                            value={allergy}
+                            checked={formik.values.allergies.includes(allergy)}
+                            onChange={handleAllergyChange}
+                          />
+                        }
+                        label={allergy}
+                      />
+                    ))}
+                  </FormGroup>
+                </FormControl>
+              </Grid>
 
-        if (!formData.fatherName) {
-            formErrors.fatherName = "Please enter the father's name.";
-        }
+              {/* More Allergies */}
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="More Allergies"
+                  name="moreAllergies"
+                  placeholder="Enter additional allergies (optional)"
+                  value={formik.values.moreAllergies}
+                  onChange={formik.handleChange}
+                />
+              </Grid>
 
-        if (!formData.gender) {
-            formErrors.gender = "Please select the child's gender.";
-        }
+              {/* Mother's Name */}
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Mother's Name"
+                  name="motherName"
+                  value={formik.values.motherName}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={
+                    formik.touched.motherName &&
+                    Boolean(formik.errors.motherName)
+                  }
+                  helperText={
+                    formik.touched.motherName && formik.errors.motherName
+                  }
+                />
+              </Grid>
 
-        if (Object.keys(formErrors).length > 0) {
-            setErrors(formErrors);
-            return;
-        }
+              {/* Father's Name */}
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Father's Name"
+                  name="fatherName"
+                  value={formik.values.fatherName}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={
+                    formik.touched.fatherName &&
+                    Boolean(formik.errors.fatherName)
+                  }
+                  helperText={
+                    formik.touched.fatherName && formik.errors.fatherName
+                  }
+                />
+              </Grid>
 
-        const userID = localStorage.getItem("token");
-        try {
-            const response = await fetch(`http://localhost:8080/api/children/${userID}/addChild`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formData)
-            });
+              {/* Phone */}
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Phone Number"
+                  name="phone"
+                  value={formik.values.phone}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={formik.touched.phone && Boolean(formik.errors.phone)}
+                  helperText={formik.touched.phone && formik.errors.phone}
+                />
+              </Grid>
 
-            if (response.ok) {
-                navigate("/HomePage");
-            } else {
-                const errorData = await response.json();
-                alert(`Add child failed: ${errorData.message}`);
-            }
-        } catch (error) {
-            alert("An error occurred while adding child. Please try again.");
-            console.error(error);
-        }
-    };
-
-    return (
-        <div className="add-child-page">
-            <Header />
-            <div className="add-child-container">
-                <h1>Add a Child</h1>
-                <form className="add-child-form" onSubmit={handleRegister}>
-                    <fieldset>
-                        <legend>Child Details</legend>
-                        <div className="add-child-div">
-                            <label>Child Name:</label>
-                            <Input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} />
-                            {errors.name && <p className="error">{errors.name}</p>}
-                        </div>
-                        <div className="add-child-div">
-                            <label>Child Age:</label>
-                            <Input type="number" name="age" placeholder="Age" value={formData.age} onChange={handleChange} />
-                            {errors.age && <p className="error">{errors.age}</p>}
-                        </div>
-                        <div className="add-child-div">
-                            <label>Child Birthday:</label>
-                            <Input type="date" name="birthday" placeholder="Birthday" value={formData.birthday} onChange={handleChange} />
-                        </div>
-                        <div className="add-child-div">
-                            <label>Child Gender:</label>
-                            <select name="gender" value={formData.gender} onChange={handleChange}>
-                                <option value="">Select Gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                            </select>
-                            {errors.gender && <p className="error">{errors.gender}</p>}
-                        </div>
-                        <div className="add-child-div child-allergies">
-                            <label>Child Allergies:</label>
-                            <div className="child-allergies-div">
-                                {allergiesList.map((allergy) => (
-                                    <label className="child-allergies-label" key={allergy}>
-                                        <input
-                                            type="checkbox"
-                                            name="allergies"
-                                            value={allergy}
-                                            checked={formData.allergies.includes(allergy)}
-                                            onChange={handleChange}
-                                        />
-                                        {allergy}
-                                    </label>
-                                ))}
-                            </div>
-                        </div>
-                    </fieldset>
-                    <fieldset>
-                        <legend>Parent Details</legend>
-                        <div className="add-child-div">
-                            <label>Mother's Name:</label>
-                            <Input type="text" name="motherName" placeholder="Mother Name" value={formData.motherName} onChange={handleChange} />
-                            {errors.motherName && <p className="error">{errors.motherName}</p>}
-                        </div>
-                        <div className="add-child-div">
-                            <label>Father's Name:</label>
-                            <Input type="text" name="fatherName" placeholder="Father Name" value={formData.fatherName} onChange={handleChange} />
-                            {errors.fatherName && <p className="error">{errors.fatherName}</p>}
-                        </div>
-                        <div className="add-child-div">
-                            <label>Phone Number:</label>
-                            <Input type="tel" name="phone" placeholder="Phone" value={formData.phone} onChange={handleChange} />
-                            {errors.phone && <p className="error">{errors.phone}</p>}
-                        </div>
-                    </fieldset>
-
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
-        </div>
-    );
-}
+              {/* Submit Button */}
+              <Grid item xs={12} textAlign="center">
+                <Button type="submit" variant="contained" color="primary">
+                  Submit
+                </Button>
+              </Grid>
+            </Grid>
+          </form>
+        </Card>
+      </Box>
+    </div>
+  );
+};
 
 export default AddChild;

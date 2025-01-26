@@ -1182,7 +1182,6 @@ input[type="date"] {
 
 @media (max-width: 768px) {
     .Periodic-container {
-        margin: 1rem;
         padding: 1rem;
     }
 
@@ -1216,7 +1215,6 @@ input[type="date"] {
 
 @media (max-width: 480px) {
     .Periodic-container {
-        margin: 0.5rem;
         padding: 0.5rem;
     }
 
