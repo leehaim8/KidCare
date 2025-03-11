@@ -1,4 +1,4 @@
-const PeriodicFeedBack = require("../models/PeriodicFeedbackModel");
+const PeriodicFeedBack = require("../models/periodicFeedbackModel");
 
 const PeriodicFeedbackController = {
     async getFeedBacks(req, res) {
