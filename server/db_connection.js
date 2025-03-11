@@ -1,15 +1,20 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
-const consts = require('./constants');
-const { DB_HOST, DB_USER, DB_PASSWORD } = consts;
-const url = DB_HOST;
 
-const options = {
-    user: DB_USER,
-    pass: DB_PASSWORD
-};
+// Get MongoDB URL from environment variables
+const DB_HOST = process.env.DB_HOST || "mongodb://localhost:27017/kidcare";
 
 mongoose
-    .connect(url, options)
-    .then(() => console.log('Connected to DB'))
-    .catch(err => console.log(`Connection error: ${err}`));
+    .connect(DB_HOST, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        serverSelectionTimeoutMS: 30000, // Prevent connection timeout
+        socketTimeoutMS: 45000, // Prevent long query timeout issues
+    })
+    .then(() => console.log('✅ Connected to MongoDB'))
+    .catch(err => {
+        console.error(`❌ MongoDB Connection error: ${err.message}`);
+        process.exit(1); // Exit if database connection fails
+    });
+
+module.exports = mongoose;

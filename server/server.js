@@ -5,21 +5,6 @@ const app = express();
 const PORT = 8080;
 
 
-const mongoose = require("mongoose");
-
-const DBHOST = process.env.DBHOST || "mongodb://localhost:27017/kidcare"; // Use DBHOST
-
-mongoose.connect(DBHOST, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 30000, // Increase timeout to 30 seconds
-    socketTimeoutMS: 45000, // Increase socket timeout to 45 seconds
-})
-    .then(() => console.log("✅ Connected to MongoDB"))
-    .catch((err) => {
-        console.error("❌ MongoDB connection error:", err.message);
-        process.exit(1); // Exit process if connection fails
-    });
 
 
 const { usersRouter } = require('./routers/usersRouter');
