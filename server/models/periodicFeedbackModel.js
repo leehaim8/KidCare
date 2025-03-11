@@ -3,7 +3,9 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const periodicFeedBackSchema = new Schema({
-    childDeatails: { type: String },
+    // Child Info
+    name: { type: String, required: true },
+    id: { type: String, required: true },
 
     // General Well-being
     energyLevel: { type: Number, required: true, min: 0, max: 5 },
@@ -35,7 +37,15 @@ const periodicFeedBackSchema = new Schema({
     meetingRequest: { type: Boolean, required: true },
 
     // Metadata
-    date: { type: Date, default: Date.now, required: true }
+    date: { 
+        type: Date, 
+        default: () => {
+            let nextMonth = new Date();
+            nextMonth.setMonth(nextMonth.getMonth() + 1);
+            return nextMonth;
+        },
+        required: true
+    },
 }, { collection: "periodicFeedBack" });
 
 const periodicFeedBack = mongoose.model("periodicFeedBack", periodicFeedBackSchema);

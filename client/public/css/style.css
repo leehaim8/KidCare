@@ -766,7 +766,7 @@ input[type="date"] {
 
 .charts-container {
     width: 100%;
-    max-width: 600px;
+    max-width: 1000px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -1771,4 +1771,91 @@ h2 {
 
 .menu-divider {
     margin: 8px 0;
+}
+
+.feedback-container {
+    display: flex;
+    flex-direction: column; /* Make it a vertical list */
+    gap: 12px; /* Space between items */
+    margin-top: 10px;
+    width: 100%;
+}
+
+.feedback-row {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    background: #f9f9f9;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.feedback-row p {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between text and emoji */
+    padding: 5px 0; /* Space between lines */
+    border-bottom: 1px solid #eee; /* Separator between items */
+}
+
+.feedback-row p:last-child {
+    border-bottom: none; /* Remove separator from last item */
+}
+
+.feedback-row span {
+    font-size: 1.5rem;
+}
+
+.text-feedback-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.text-feedback {
+    background: #fdfdfd;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.text-feedback p {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #333;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.text-feedback p:last-child {
+    border-bottom: none;
+}
+.radar-chart{
+    max-height: 700px;
+    max-width: 800px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.DateFeedBack{
+    font-size: 18px;
+    color: #6a2e94;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.feedBackH3{
+    font-size: 24px;
+    color: #6a2e94;
+    font-weight: bold;
+    margin-top: 15px;
 }

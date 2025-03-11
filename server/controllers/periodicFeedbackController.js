@@ -36,11 +36,16 @@ const PeriodicFeedbackController = {
             date
         } = req.body;
         console.log(req.body);
-    
+        const parsedChildDetails = JSON.parse(childDeatails);
+
+// Extract properties
+const id = parsedChildDetails.id;
+const name = parsedChildDetails.name;
     
         try {
             const newFeedBack = new PeriodicFeedBack({
-                childDeatails,
+                id,
+                name,
                 energyLevel,
                 eatingHabits,
                 sleepingQuality,

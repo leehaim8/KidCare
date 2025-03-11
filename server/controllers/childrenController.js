@@ -1,5 +1,6 @@
 const Children = require("../models/childrenModel");
 const weekFeedBackModel = require("../models/weekFeedBackModel");
+const periodicFeedBack = require("../models/PeriodicFeedbackModel");
 
 const childrenController = {
     async getChildren(req, res) {
@@ -59,12 +60,13 @@ const childrenController = {
 
         try {
             const childDetails = await Children.findOne({ childID });
-            const weekFeedback = await weekFeedBackModel.find({ name: childDetails.name });
+            const weekFeedback = await weekFeedBackModel.find({ "name": childDetails.name });
+            const periodicFeedback = await periodicFeedBack.find({ "name": childDetails.name });
             if (!childDetails) {
                 return res.status(404).json({ message: 'Child not found' });
             }
 
-            res.json({ childDetails, weekFeedback });
+            res.json({ childDetails, weekFeedback , periodicFeedback});
         } catch (error) {
             res.status(500).json({ message: error.message });
         }

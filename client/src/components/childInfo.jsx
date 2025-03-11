@@ -4,6 +4,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { RiDeleteBinLine } from "react-icons/ri";
 import { FiEdit } from "react-icons/fi";
+import { ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Tooltip as RechartsTooltip, ResponsiveContainer } from 'recharts'; // Import Recharts components
 import Header from './Header';
 import WeeklyFeedbackChildPage from './WeeklyFeedbackChildPage';
 import EditChildInfo from './EditChildInfo';
@@ -26,7 +28,10 @@ const ChildInfo = () => {
 
     const [childDetails, setChildDetails] = useState(null);
     const [weekFeedback, setWeekFeedback] = useState([]);
+    const [periodicFeedback, setPeriodicFeedback] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
+    const [showWeeklyFeedback, setShowWeeklyFeedback] = useState(true); // Toggle state
+
     useEffect(() => {
         const fetchChildDetails = async () => {
             try {
@@ -37,6 +42,7 @@ const ChildInfo = () => {
                 const data = await response.json();
                 setChildDetails(data.childDetails);
                 setWeekFeedback(data.weekFeedback);
+                setPeriodicFeedback(data.periodicFeedback); 
             } catch (error) {
                 console.error('Error fetching child details:', error);
             }
@@ -88,7 +94,8 @@ const ChildInfo = () => {
         return date.toLocaleDateString('he-IL', { day: '2-digit', month: '2-digit', year: 'numeric' });
     };
 
-    const learningProgressData = {
+    // Weekly feedback graph data
+    const weeklyLearningProgressData = {
         labels: weekFeedback.map((feedback) => formatDate(feedback.Date)),
         datasets: [
             {
@@ -101,7 +108,7 @@ const ChildInfo = () => {
         ],
     };
 
-    const healthData = {
+    const weeklyHealthData = {
         labels: weekFeedback.map((feedback) => formatDate(feedback.Date)),
         datasets: [
             {
@@ -113,6 +120,43 @@ const ChildInfo = () => {
             },
         ],
     };
+    // Function to map string values ("low", "moderate", "high") to emojis
+    const mapToEmoji = (value) => {
+        const emojiMap = {
+            low: { label: "Low", icon: <span>🙁</span> },
+            moderate: { label: "Moderate", icon: <span>🙂</span> },
+            high: { label: "High", icon: <span>😃</span> },
+        };
+        return emojiMap[value] || { label: "No Data", icon: <span>❓</span> };
+    };
+// Function to extract month name from date
+const getMonthName = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleString("en-US", { month: "long" });
+};
+
+// Group periodic feedback by month & calculate average scores
+const monthlyData = {};
+periodicFeedback.forEach((feedback) => {
+    const month = getMonthName(feedback.date);
+
+    if (!monthlyData[month]) {
+        monthlyData[month] = { count: 0, energyLevel: 0, mood: 0 };
+    }
+
+    monthlyData[month].energyLevel += feedback.energyLevel;
+    monthlyData[month].mood += feedback.mood;
+    monthlyData[month].count += 1;
+});
+
+// Convert aggregated monthly data into an array
+const generalWellBeingData = Object.keys(monthlyData).map((month) => ({
+    month,
+    energyLevel: Math.round(monthlyData[month].energyLevel / monthlyData[month].count),
+    mood: Math.round(monthlyData[month].mood / monthlyData[month].count),
+}));
+
+
 
     return (
         <div>
@@ -131,36 +175,124 @@ const ChildInfo = () => {
                                 <h2>{childDetails.name}</h2>
                                 <img src={`http://localhost:8080/public/${childDetails.image}`} alt={`${childDetails.name}`} className="child-image" />
                             </div>
-                            <div className="child-info-details">
-                                <p><strong>Age:</strong> {childDetails.age}</p>
-                                <p><strong>Birthday:</strong> {childDetails.birthday}</p>
-                                <p><strong>Allergies:</strong>
-                                    {childDetails && Array.isArray(childDetails.allergies)
-                                        ? childDetails.allergies.join(', ')
-                                        : 'No allergies available'}
-                                </p>
-                                <p><strong>Mother:</strong>
-                                    {childDetails.contactInfo.mother}
-                                </p>
-
-                                <p><strong>Father's Contact:</strong>
-                                    {childDetails.contactInfo.father}
-                                </p>
-                                <p><strong>Phone:</strong>
-                                    {childDetails.contactInfo.phone}
-                                </p>
-                            </div>
                         </div>
+
                         <WeeklyFeedbackChildPage weekFeedback={weekFeedback} />
+
+                        {/* Toggle Button */}
+                        <ToggleButtonGroup
+                            value={showWeeklyFeedback ? 'weekly' : 'periodic'}
+                            exclusive
+                            onChange={(event, newValue) => {
+                                if (newValue !== null) {
+                                    setShowWeeklyFeedback(newValue === 'weekly');
+                                }
+                            }}
+                            sx={{ marginBottom: 2 }}
+                        >
+                            <ToggleButton value="weekly">Weekly Feedback</ToggleButton>
+                            <ToggleButton value="periodic">Periodic Feedback</ToggleButton>
+                        </ToggleButtonGroup>
+
+                        {/* Display the appropriate graphs */}
                         <div className="charts-container">
-                            <div className="chart">
-                                <h3>Learning Progress</h3>
-                                <Line data={learningProgressData} />
-                            </div>
-                            <div className="chart">
-                                <h3>Health Rating</h3>
-                                <Line data={healthData} />
-                            </div>
+                            {showWeeklyFeedback ? (
+                                <>
+                                    <div className="chart">
+                                        <h3>Learning Progress (Weekly)</h3>
+                                        <Line data={{
+                                            labels: weekFeedback.map((feedback) => formatDate(feedback.Date)),
+                                            datasets: [
+                                                {
+                                                    label: 'Learning Progress',
+                                                    data: weekFeedback.map((feedback) => feedback.learningProgress),
+                                                    fill: false,
+                                                    borderColor: 'rgba(75,192,192,1)',
+                                                    tension: 0.1,
+                                                },
+                                            ],
+                                        }} />
+                                    </div>
+                                    <div className="chart">
+                                        <h3>Health Rating (Weekly)</h3>
+                                        <Line data={{
+                                            labels: weekFeedback.map((feedback) => formatDate(feedback.Date)),
+                                            datasets: [
+                                                {
+                                                    label: 'Health Rating',
+                                                    data: weekFeedback.map((feedback) => feedback.health),
+                                                    fill: false,
+                                                    borderColor: 'rgba(255,99,132,1)',
+                                                    tension: 0.1,
+                                                },
+                                            ],
+                                        }} />
+                                    </div>
+                                </>
+                            ) : (
+                                <>
+                                    <h3 className='feedBackH3'>General Well-being</h3>
+                                    <div className='radar-chart'>
+    <ResponsiveContainer width="100%" height={500}>
+        <RadarChart cx="50%" cy="50%" outerRadius="80%" data={generalWellBeingData}>
+            <PolarGrid />
+            <PolarAngleAxis dataKey="month" /> {/* X-Axis: Months */}
+            <PolarRadiusAxis domain={[1, 10]} /> {/* Y-Axis: Scores from 1 to 10 */}
+            
+            {/* Radar components for different well-being factors */}
+            <Radar name="Energy Level" dataKey="energyLevel" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+            <Radar name="Mood" dataKey="mood" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} />
+
+            <RechartsTooltip />
+        </RadarChart>
+    </ResponsiveContainer>
+</div>
+
+<h3 className='feedBackH3'>Additional Observations</h3>
+<div className="feedback-container">
+    {periodicFeedback.map((feedback, index) => (
+        <div key={index} className="feedback-row">
+            <h4 className='DateFeedBack'>{formatDate(feedback.date)}</h4>
+            <p>Sleeping: {feedback.sleepingQuality ? "✅ Sleeps well" : "❌ Does not sleep well"}</p>
+            <p>Physical Active: {feedback.physicalActivity ? "✅ Engages in physical activity" : "❌ Does not engage in physical activity"}</p>
+            <p>Group Contri: {feedback.groupContribution ? "✅ Actively contributes to group activities" : "❌ Does not contribute to group activities"}</p>
+        </div>
+    ))}
+</div>
+
+
+                                <h3 className='feedBackH3'>Learning & Participation</h3>
+                                <div className="feedback-container">
+                                    {periodicFeedback.map((feedback, index) => (
+                                <div key={index} className="feedback-row">
+                                <h4 className='DateFeedBack'>{formatDate(feedback.date)}</h4>
+                                <p><strong>Participation:</strong> {mapToEmoji(feedback.participationLevel).icon} {mapToEmoji(feedback.participationLevel).label}</p>
+                                <p><strong>Activity Focus:</strong> {mapToEmoji(feedback.activityFocus).icon} {mapToEmoji(feedback.activityFocus).label}</p>
+                                <p><strong>Teamwork:</strong> {mapToEmoji(feedback.teamwork).icon} {mapToEmoji(feedback.teamwork).label}</p>
+                                <p><strong>Self Initiative:</strong> {mapToEmoji(feedback.selfInitiative).icon} {mapToEmoji(feedback.selfInitiative).label}</p>
+                                </div>
+                             ))}
+                        </div>
+                        <h3 className='feedBackH3'>Teacher's Observations</h3>
+<div className="text-feedback-container">
+    {periodicFeedback.map((feedback, index) => (
+        <div key={index} className="text-feedback">
+            <h4 className='DateFeedBack'>{formatDate(feedback.date)}</h4>
+            {feedback.eatingHabits && <p><strong>Eating Habits:</strong> {feedback.eatingHabits}</p>}
+            {feedback.emotionalExpression && <p><strong>Emotional Expression:</strong> {feedback.emotionalExpression}</p>}
+            {feedback.socialInteraction && <p><strong>Social Interaction:</strong> {feedback.socialInteraction}</p>}
+            {feedback.conflictResolution && <p><strong>Conflict Resolution:</strong> {feedback.conflictResolution}</p>}
+            {feedback.emotionalGrowth && <p><strong>Emotional Growth:</strong> {feedback.emotionalGrowth}</p>}
+            {feedback.specialNotes && <p><strong>Special Notes:</strong> {feedback.specialNotes}</p>}
+            {feedback.suggestionsForImprovement && <p><strong>Suggestions for Improvement:</strong> {feedback.suggestionsForImprovement}</p>}
+        </div>
+    ))}
+</div>
+
+
+
+                                </>
+                            )}
                         </div>
                     </>
                 )}
@@ -168,5 +300,4 @@ const ChildInfo = () => {
         </div>
     );
 };
-
 export default ChildInfo;
