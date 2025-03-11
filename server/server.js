@@ -22,7 +22,7 @@ app.use(cors({
         const allowedOrigins = [
             "https://kidcare-a7p0.onrender.com",
             "http://localhost:3000",
-            "https://mellow-parfait-cd4575.netlify.app/"
+            "https://mellow-parfait-cd4575.netlify.app"
         ];
         if (!origin || allowedOrigins.includes(origin)) {
             callback(null, true);
