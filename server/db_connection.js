@@ -8,8 +8,8 @@ mongoose
     .connect(DB_HOST, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        serverSelectionTimeoutMS: 30000, // Prevent connection timeout
-        socketTimeoutMS: 45000, // Prevent long query timeout issues
+        serverSelectionTimeoutMS: 60000, // Prevent connection timeout
+        socketTimeoutMS: 80000, // Prevent long query timeout issues
     })
     .then(() => console.log('✅ Connected to MongoDB'))
     .catch(err => {
