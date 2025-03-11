@@ -1,6 +1,6 @@
 const Children = require("../models/childrenModel");
 const weekFeedBackModel = require("../models/weekFeedBackModel");
-const periodicFeedBack = require("../models/PeriodicFeedbackModel");
+const periodicFeedBack = require("../models/periodicFeedbackModel");
 
 const childrenController = {
     async getChildren(req, res) {

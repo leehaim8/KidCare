@@ -1,4 +1,3 @@
-
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
@@ -48,5 +47,7 @@ const periodicFeedBackSchema = new Schema({
     },
 }, { collection: "periodicFeedBack" });
 
-const periodicFeedBack = mongoose.model("periodicFeedBack", periodicFeedBackSchema);
+// ✅ FIX: Check if the model already exists before defining it
+const periodicFeedBack = mongoose.models.periodicFeedBack || mongoose.model("periodicFeedBack", periodicFeedBackSchema);
+
 module.exports = periodicFeedBack;
