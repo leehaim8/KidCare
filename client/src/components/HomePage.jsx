@@ -16,7 +16,7 @@ function Home() {
   useEffect(() => {
     const fetchChildren = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/api/children/${userId}`);
+        const response = await fetch(`https://kidcare-a7p0.onrender.com/api/children/${userId}`);
         const data = await response.json();
         setChildren(data);
       } catch (error) {
@@ -26,7 +26,7 @@ function Home() {
 
     const checkBirthdays = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/api/children/birthday/${userId}`);
+        const response = await fetch(`https://kidcare-a7p0.onrender.com/api/children/birthday/${userId}`);
         const data = await response.json();
         if (data.birthdays && data.birthdays.length > 0) {
           setBirthdayMessage(`Today is the birthday of: ${data.birthdays.map(b => b.name).join(", ")}.`);

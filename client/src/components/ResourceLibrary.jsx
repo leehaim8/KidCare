@@ -12,7 +12,7 @@ const ResourceLibrary = () => {
     useEffect(() => {
         async function fetchCards() {
             try {
-                const response = await fetch(`http://localhost:8080/api/resources`, {
+                const response = await fetch(`https://kidcare-a7p0.onrender.com/api/resources`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",

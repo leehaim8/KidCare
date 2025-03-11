@@ -7,7 +7,7 @@ function Header() {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await fetch(`http://localhost:8080/api/users/${userId}`);
+                const response = await fetch(`https://kidcare-a7p0.onrender.com/api/users/${userId}`);
                 const data = await response.json();
                 setUser(data);
             } catch (error) {
@@ -24,7 +24,7 @@ function Header() {
             <header>
                 <a href="/HomePage"><div className="logo"></div></a>
             </header>
-            <img src={`http://localhost:8080/public/${user.image}`} alt={user.name}></img>
+            <img src={`https://kidcare-a7p0.onrender.com/public/${user.image}`} alt={user.name}></img>
         </div>
     );
 }

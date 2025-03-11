@@ -35,7 +35,7 @@ function WeeklyFeedback() {
       const userID = localStorage.getItem("token");
       try {
         const response = await fetch(
-          `http://localhost:8080/api/children/${userID}`,
+          `https://kidcare-a7p0.onrender.com/api/children/${userID}`,
           {
             method: "GET",
             headers: {
@@ -87,7 +87,7 @@ function WeeklyFeedback() {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/api/weekFeedBack/${userID}/addFeedback`,
+        `https://kidcare-a7p0.onrender.com/api/weekFeedBack/${userID}/addFeedback`,
         {
           method: "POST",
           headers: {

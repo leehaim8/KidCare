@@ -25,7 +25,7 @@ function Attendance() {
     const fetchChildren = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8080/api/children/${userId}`
+          `https://kidcare-a7p0.onrender.com/api/children/${userId}`
         );
         const data = await response.json();
         setChildren(data);
@@ -69,7 +69,7 @@ function Attendance() {
     }));
 
     try {
-      const response = await fetch(`http://localhost:8080/api/attendance/${userId}/add`, {
+      const response = await fetch(`https://kidcare-a7p0.onrender.com/api/attendance/${userId}/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -94,7 +94,7 @@ function Attendance() {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/api/attendance/${userId}/history?date=${selectedDate}`
+        `https://kidcare-a7p0.onrender.com/api/attendance/${userId}/history?date=${selectedDate}`
       );
 
       if (response.ok) {

@@ -35,7 +35,7 @@ const ChildInfo = () => {
     useEffect(() => {
         const fetchChildDetails = async () => {
             try {
-                const response = await fetch(`http://localhost:8080/api/children/childDetails/${childID}`);
+                const response = await fetch(`https://kidcare-a7p0.onrender.com/api/children/childDetails/${childID}`);
                 if (!response.ok) {
                     throw new Error('Error fetching child details');
                 }
@@ -53,7 +53,7 @@ const ChildInfo = () => {
 
     const handleDelete = async () => {
         try {
-            const response = await fetch(`http://localhost:8080/api/children/${childID}`, {
+            const response = await fetch(`https://kidcare-a7p0.onrender.com/api/children/${childID}`, {
                 method: 'DELETE',
             });
             if (!response.ok) {
@@ -67,7 +67,7 @@ const ChildInfo = () => {
 
     const handleSaveEdit = async (updatedDetails) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/children/${childID}`, {
+            const response = await fetch(`https://kidcare-a7p0.onrender.com/api/children/${childID}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -173,7 +173,7 @@ const generalWellBeingData = Object.keys(monthlyData).map((month) => ({
                         <div className="child-info-card">
                             <div className="child-info-header">
                                 <h2>{childDetails.name}</h2>
-                                <img src={`http://localhost:8080/public/${childDetails.image}`} alt={`${childDetails.name}`} className="child-image" />
+                                <img src={`https://kidcare-a7p0.onrender.com/public/${childDetails.image}`} alt={`${childDetails.name}`} className="child-image" />
                             </div>
                         </div>
 

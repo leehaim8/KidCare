@@ -14,7 +14,7 @@ const attendenceRouter = require('./routers/attendenceRouter');
 
 
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: ["https://kidcare-a7p0.onrender.com", "http://localhost:3000"],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true

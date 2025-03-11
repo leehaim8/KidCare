@@ -53,7 +53,7 @@ const AddChild = () => {
     onSubmit: async (values, { resetForm }) => {
       try {
         const response = await fetch(
-          `http://localhost:8080/api/children/${userId}/addChild`,
+          `https://kidcare-a7p0.onrender.com/api/children/${userId}/addChild`,
           {
             method: "POST",
             headers: {

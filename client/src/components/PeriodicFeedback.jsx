@@ -68,7 +68,7 @@ export default function PeriodicFeedback() {
         async function fetchChildren() {
             const userID = localStorage.getItem("token");
             try {
-                const response = await fetch(`http://localhost:8080/api/children/${userID}`, {
+                const response = await fetch(`https://kidcare-a7p0.onrender.com/api/children/${userID}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -95,7 +95,7 @@ export default function PeriodicFeedback() {
         console.log(values);
         const userID = localStorage.getItem("token");
         try {
-            const response = await fetch(`http://localhost:8080/api/periodicFeedback/${userID}/addPeriodicFeedback`, {
+            const response = await fetch(`https://kidcare-a7p0.onrender.com/api/periodicFeedback/${userID}/addPeriodicFeedback`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -10,7 +10,7 @@ const Experts = () => {
     useEffect(() => {
         const fetchExperts = async () => {
             try {
-                const response = await fetch(`http://localhost:8080/api/expert`);
+                const response = await fetch(`https://kidcare-a7p0.onrender.com/api/expert`);
                 if (!response.ok) {
                     throw new Error("Failed to fetch experts");
                 }
@@ -43,7 +43,7 @@ const Experts = () => {
             <section className="experts-container">
                 {experts.map((expert) => (
                     <div className={`expert-card ${expandedExpertId === expert.id ? "expanded" : ""}`} key={expert.id} onClick={() => toggleDetails(expert.id)}>
-                        <img src={`http://localhost:8080/public/${expert.image}`} alt={`${expert.name}`}></img>
+                        <img src={`https://kidcare-a7p0.onrender.com/public/${expert.image}`} alt={`${expert.name}`}></img>
                         <h2>{expert.name}</h2>
                         <p className="specialty">{expert.specialty}</p>
                         {expandedExpertId === expert.id && (
