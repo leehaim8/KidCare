@@ -12,8 +12,8 @@ if (!DB_HOST) {
 mongoose
     .connect(DB_HOST, {
         useNewUrlParser: true,
-        serverSelectionTimeoutMS: 30000, // Give MongoDB 30 seconds to connect
-        socketTimeoutMS: 45000, // Prevent timeouts on queries
+        serverSelectionTimeoutMS: 50000, // Give MongoDB 30 seconds to connect
+        socketTimeoutMS: 75000, // Prevent timeouts on queries
     })
     .then(() => console.log("✅ Connected to MongoDB"))
     .catch((err) => {
