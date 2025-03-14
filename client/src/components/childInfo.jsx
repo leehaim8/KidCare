@@ -169,7 +169,7 @@ const generalWellBeingData = Object.keys(monthlyData).map((month) => ({
                         <div className="child-info-card">
                             <div className="child-info-header">
                                 <h2>{childDetails.name}</h2>
-                                <img src={`http://localhost:8080/public/${childDetails.image}`} alt={`${childDetails.name}`} className="child-image" />
+                                <img src={`https://kidcare-a7p0.onrender.com/public/${childDetails.image}`} alt={`${childDetails.name}`} className="child-image" />
                             </div>
                             <div className="child-info-details">
                                 <p><strong>Age:</strong> {childDetails.age}</p>
