@@ -166,14 +166,29 @@ const generalWellBeingData = Object.keys(monthlyData).map((month) => ({
                     <EditChildInfo childDetails={childDetails} onSave={handleSaveEdit} onCancel={() => setIsEditing(false)} />
                 ) : (
                     <>
-                        <div className="child-info-container-div">
-                            <button onClick={() => setIsEditing(true)} className="child-info-container-button"><FiEdit /></button>
-                            <button onClick={handleDelete} className="child-info-container-button"><RiDeleteBinLine /></button>
-                        </div>
                         <div className="child-info-card">
                             <div className="child-info-header">
                                 <h2>{childDetails.name}</h2>
-                                <img src={`https://kidcare-a7p0.onrender.com/public/${childDetails.image}`} alt={`${childDetails.name}`} className="child-image" />
+                                <img src={`http://localhost:8080/public/${childDetails.image}`} alt={`${childDetails.name}`} className="child-image" />
+                            </div>
+                            <div className="child-info-details">
+                                <p><strong>Age:</strong> {childDetails.age}</p>
+                                <p><strong>Birthday:</strong> {childDetails.birthday}</p>
+                                <p><strong>Allergies:</strong>
+                                    {childDetails && Array.isArray(childDetails.allergies)
+                                        ? childDetails.allergies.join(', ')
+                                        : 'No allergies available'}
+                                </p>
+                                <p><strong>Mother:</strong>
+                                    {childDetails.contactInfo.mother}
+                                </p>
+
+                                <p><strong>Father's Contact:</strong>
+                                    {childDetails.contactInfo.father}
+                                </p>
+                                <p><strong>Phone:</strong>
+                                    {childDetails.contactInfo.phone}
+                                </p>
                             </div>
                         </div>
 
